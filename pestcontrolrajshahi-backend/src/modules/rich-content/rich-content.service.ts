@@ -1,10 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { generateHTML } from '@tiptap/html';
-import StarterKit from '@tiptap/starter-kit';
-import Image from '@tiptap/extension-image';
-import Link from '@tiptap/extension-link';
-import Underline from '@tiptap/extension-underline';
-import DOMPurify from 'isomorphic-dompurify';
+import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
+
+// NOTE: @tiptap/* v3 packages are ESM-only and isomorphic-dompurify dual-publishes
+// ESM/CJS in a way Vercel's bundler can't always require() cleanly. We resolve
+// both via dynamic import() inside onModuleInit so the rest of the service
+// stays synchronous after bootstrap.
 
 const ALLOWED_NODES = new Set([
   'doc',
@@ -27,7 +26,30 @@ const ALLOWED_MARKS = new Set(['bold', 'italic', 'underline', 'strike', 'code', 
 const MAX_DEPTH = 8;
 
 @Injectable()
-export class RichContentService {
+export class RichContentService implements OnModuleInit {
+  private generateHTML!: (doc: any, extensions: any[]) => string;
+  private extensions!: any[];
+  private purify!: { sanitize: (html: string, cfg?: any) => string };
+
+  async onModuleInit(): Promise<void> {
+    const [tiptapHtml, sk, img, lnk, und, dompurify] = await Promise.all([
+      import('@tiptap/html'),
+      import('@tiptap/starter-kit'),
+      import('@tiptap/extension-image'),
+      import('@tiptap/extension-link'),
+      import('@tiptap/extension-underline'),
+      import('isomorphic-dompurify'),
+    ]);
+    this.generateHTML = (tiptapHtml as any).generateHTML;
+    this.extensions = [
+      (sk as any).default ?? sk,
+      (img as any).default ?? img,
+      (lnk as any).default ?? lnk,
+      (und as any).default ?? und,
+    ];
+    this.purify = (dompurify as any).default ?? dompurify;
+  }
+
   validateDoc(doc: unknown, depth = 0): void {
     if (depth > MAX_DEPTH) throw new BadRequestException('Content too deeply nested');
     if (!doc || typeof doc !== 'object') {
@@ -63,8 +85,8 @@ export class RichContentService {
   toHtml(doc: any): string {
     if (!doc) return '';
     try {
-      const html = generateHTML(doc, [StarterKit, Image, Link, Underline]);
-      return DOMPurify.sanitize(html, {
+      const html = this.generateHTML(doc, this.extensions);
+      return this.purify.sanitize(html, {
         ALLOWED_TAGS: [
           'p',
           'h1',
@@ -99,6 +121,6 @@ export class RichContentService {
 
   /** Sanitize a fragment of HTML coming from anywhere user-influenced. */
   sanitizeHtml(html: string): string {
-    return DOMPurify.sanitize(html);
+    return this.purify.sanitize(html);
   }
 }
