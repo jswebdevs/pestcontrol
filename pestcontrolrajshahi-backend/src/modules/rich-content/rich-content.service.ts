@@ -4,6 +4,15 @@ import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
 // ESM/CJS in a way Vercel's bundler can't always require() cleanly. We resolve
 // both via dynamic import() inside onModuleInit so the rest of the service
 // stays synchronous after bootstrap.
+//
+// CRITICAL: TypeScript's CJS output rewrites `await import('x')` into
+// `Promise.resolve().then(() => require('x'))`, which re-triggers ERR_REQUIRE_ESM.
+// `Function('s','return import(s)')` is opaque to TS and bundlers, so it stays a
+// real dynamic import at runtime.
+const dynamicImport: <T = any>(specifier: string) => Promise<T> = new Function(
+  's',
+  'return import(s)',
+) as any;
 
 const ALLOWED_NODES = new Set([
   'doc',
@@ -33,12 +42,12 @@ export class RichContentService implements OnModuleInit {
 
   async onModuleInit(): Promise<void> {
     const [tiptapHtml, sk, img, lnk, und, dompurify] = await Promise.all([
-      import('@tiptap/html'),
-      import('@tiptap/starter-kit'),
-      import('@tiptap/extension-image'),
-      import('@tiptap/extension-link'),
-      import('@tiptap/extension-underline'),
-      import('isomorphic-dompurify'),
+      dynamicImport('@tiptap/html'),
+      dynamicImport('@tiptap/starter-kit'),
+      dynamicImport('@tiptap/extension-image'),
+      dynamicImport('@tiptap/extension-link'),
+      dynamicImport('@tiptap/extension-underline'),
+      dynamicImport('isomorphic-dompurify'),
     ]);
     this.generateHTML = (tiptapHtml as any).generateHTML;
     this.extensions = [
