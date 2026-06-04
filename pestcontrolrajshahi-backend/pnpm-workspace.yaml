@@ -1,5 +1,7 @@
 packages:
   - "."
 
-dangerouslyAllowAllBuilds: true
+# Build-script gate: rely on the explicit onlyBuiltDependencies allowlist in
+# package.json. Don't combine with dangerouslyAllowAllBuilds — pnpm 10+ rejects
+# the combo with ERR_PNPM_CONFIG_CONFLICT_BUILT_DEPENDENCIES.
 verifyDepsBeforeRun: false
