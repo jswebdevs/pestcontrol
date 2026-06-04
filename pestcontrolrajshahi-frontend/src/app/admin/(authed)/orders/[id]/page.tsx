@@ -149,28 +149,47 @@ export default function AdminOrderDetail() {
             rows={2}
             className="mb-3"
           />
-          <Dialog open={cancelOpen} onOpenChange={setCancelOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" className="text-destructive border-destructive/40">
-                Cancel order
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogTitle>Cancel this order?</DialogTitle>
-              <DialogDescription>
-                The customer will be notified by email and SMS. Cancelling is separate from deleting.
-              </DialogDescription>
-              <Textarea value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Reason (required)" />
-              <DialogFooter>
-                <Button variant="outline" onClick={() => setCancelOpen(false)}>
-                  Close
+          <div className="flex flex-wrap gap-2">
+            <Dialog open={cancelOpen} onOpenChange={setCancelOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="text-destructive border-destructive/40">
+                  Cancel order
                 </Button>
-                <Button variant="destructive" disabled={!reason} onClick={cancel}>
-                  Confirm cancellation
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogTitle>Cancel this order?</DialogTitle>
+                <DialogDescription>
+                  The customer will be notified by email and SMS. Cancelling is separate from deleting.
+                </DialogDescription>
+                <Textarea value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Reason (required)" />
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => setCancelOpen(false)}>
+                    Close
+                  </Button>
+                  <Button variant="destructive" disabled={!reason} onClick={cancel}>
+                    Confirm cancellation
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button
+              variant="ghost"
+              className="text-destructive hover:bg-destructive/10"
+              onClick={async () => {
+                if (!confirm("Move this order to trash? Customer will NOT be notified. Recoverable from /admin/orders/trash.")) return;
+                try {
+                  const { apiDelete } = await import("@/lib/api");
+                  await apiDelete(`/admin/orders/${order.id}`);
+                  toast.success("Moved to trash");
+                  window.location.href = "/admin/orders";
+                } catch (e: any) {
+                  toast.error(e?.response?.data?.message || "Failed");
+                }
+              }}
+            >
+              Move to Trash
+            </Button>
+          </div>
         </CardContent>
       </Card>
 

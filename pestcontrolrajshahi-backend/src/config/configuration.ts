@@ -14,6 +14,7 @@ export default () => ({
   },
   cookie: {
     secret: process.env.COOKIE_SECRET!,
+    domain: process.env.COOKIE_DOMAIN || undefined,
   },
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID || '',

@@ -1,86 +1,108 @@
-"use client";
-
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { toast } from "sonner";
-import { apiPost } from "@/lib/api";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { getSettings } from "@/lib/settings";
 import { Card, CardContent } from "@/components/ui/card";
+import { BookNowButton } from "@/components/public/BookNowButton";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().optional(),
-  subject: z.string().optional(),
-  message: z.string().min(10),
-});
+export const metadata = {
+  title: "Contact",
+  description: "Reach us by phone, email, or visit the office. Map and address inside.",
+};
 
-type FormValues = z.infer<typeof schema>;
-
-export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const form = useForm<FormValues>({ resolver: zodResolver(schema) });
-
-  const onSubmit = async (values: FormValues) => {
-    try {
-      await apiPost("/contact", values);
-      setSubmitted(true);
-      form.reset();
-      toast.success("Message sent — we'll reply soon.");
-    } catch (e: any) {
-      toast.error(e?.response?.data?.message || "Failed to send. Try again.");
-    }
-  };
+export default async function ContactPage() {
+  const settings = await getSettings();
+  const contact = settings["footer.contact"] || {};
 
   return (
-    <section className="container max-w-2xl py-16 md:py-24">
-      <h1 className="font-heading text-3xl md:text-4xl font-bold mb-3">Get in touch</h1>
-      <p className="text-muted-foreground mb-8">
-        We respond within 24 hours. For urgent matters, please call us directly.
-      </p>
-      {submitted && (
-        <div className="rounded-2xl border bg-primary/5 p-4 mb-6 text-sm">
-          ✓ Message received. We'll get back to you shortly.
-        </div>
-      )}
-      <Card>
-        <CardContent className="p-6">
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" {...form.register("name")} />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" {...form.register("email")} />
-              </div>
+    <section className="container py-16 md:py-20">
+      <div className="max-w-2xl mb-10">
+        <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3">Get in touch</h1>
+        <p className="text-muted-foreground">
+          Reach us by phone, email, or stop by the office. To request a service, use the booking button.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 md:gap-8">
+        <Card>
+          <CardContent className="p-6 md:p-8 space-y-5">
+            <h2 className="font-heading font-bold text-xl">Contact details</h2>
+            <ul className="space-y-4 text-sm">
+              {contact.phone && (
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 size-9 rounded-full bg-primary/10 text-primary grid place-items-center shrink-0">
+                    <Phone className="size-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs uppercase tracking-wide text-muted-foreground">Phone</div>
+                    <a href={`tel:${contact.phone}`} className="font-medium hover:text-primary transition">
+                      {contact.phone}
+                    </a>
+                  </div>
+                </li>
+              )}
+              {contact.email && (
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 size-9 rounded-full bg-primary/10 text-primary grid place-items-center shrink-0">
+                    <Mail className="size-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs uppercase tracking-wide text-muted-foreground">Email</div>
+                    <a href={`mailto:${contact.email}`} className="font-medium hover:text-primary transition break-all">
+                      {contact.email}
+                    </a>
+                  </div>
+                </li>
+              )}
+              {contact.address && (
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 size-9 rounded-full bg-primary/10 text-primary grid place-items-center shrink-0">
+                    <MapPin className="size-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs uppercase tracking-wide text-muted-foreground">Address</div>
+                    <div className="font-medium">{contact.address}</div>
+                  </div>
+                </li>
+              )}
+              {contact.hours && (
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 size-9 rounded-full bg-primary/10 text-primary grid place-items-center shrink-0">
+                    <Clock className="size-4" />
+                  </span>
+                  <div>
+                    <div className="text-xs uppercase tracking-wide text-muted-foreground">Hours</div>
+                    <div className="font-medium">{contact.hours}</div>
+                  </div>
+                </li>
+              )}
+            </ul>
+
+            <div className="pt-2 border-t">
+              <BookNowButton size="lg" className="rounded-full px-8 w-full sm:w-auto">
+                Book a service
+              </BookNowButton>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="phone">Phone (optional)</Label>
-                <Input id="phone" {...form.register("phone")} />
+          </CardContent>
+        </Card>
+
+        <Card className="overflow-hidden">
+          <CardContent className="p-0 h-full">
+            {contact.mapEmbedUrl ? (
+              <iframe
+                src={contact.mapEmbedUrl}
+                title="Office location"
+                className="w-full h-full min-h-[360px] border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            ) : (
+              <div className="w-full h-full min-h-[360px] grid place-items-center text-sm text-muted-foreground p-8 text-center">
+                Add a Google Maps embed URL in admin → Settings → Footer → Map embed URL.
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" {...form.register("subject")} />
-              </div>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="message">Message</Label>
-              <Textarea id="message" rows={5} {...form.register("message")} />
-            </div>
-            <Button type="submit" disabled={form.formState.isSubmitting} className="mt-2">
-              {form.formState.isSubmitting ? "Sending..." : "Send message"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </section>
   );
 }

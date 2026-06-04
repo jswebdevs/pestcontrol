@@ -17,7 +17,7 @@ export default async function ServicesListPage({
   return (
     <section className="container py-16 md:py-20">
       <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3">Our services</h1>
-      <p className="text-muted-foreground mb-8">Pickup, clean, deliver — all across Rajshahi.</p>
+      <p className="text-muted-foreground mb-8">Safe, effective pest control across Rajshahi.</p>
 
       <div className="flex flex-wrap gap-2 mb-8">
         <Link
@@ -47,12 +47,6 @@ export default async function ServicesListPage({
               <CardContent className="p-5 space-y-2">
                 <div className="font-heading font-semibold text-lg group-hover:text-primary transition">{s.name}</div>
                 <p className="text-sm text-muted-foreground line-clamp-2">{s.shortDesc}</p>
-                {s.basePrice && (
-                  <div className="text-sm font-medium pt-2">
-                    From <span className="text-primary">৳{Number(s.basePrice).toFixed(0)}</span>{" "}
-                    <span className="text-muted-foreground text-xs">{s.priceUnit}</span>
-                  </div>
-                )}
               </CardContent>
             </Card>
           </Link>

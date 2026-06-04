@@ -10,7 +10,6 @@ import { OrderStatus, PaymentStatus, Prisma, UserStatus } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 import { randomBytes } from 'crypto';
 import { PrismaService } from '../../prisma/prisma.service';
-import { OtpService } from '../otp/otp.service';
 import { MailService } from '../mail/mail.service';
 
 interface OrderItemInput {
@@ -25,11 +24,10 @@ interface CreateOrderInput {
   email: string;
   address: string;
   area?: string;
-  preferredDate: string; // ISO
-  timeWindow: string;
+  preferredDate?: string;
+  timeWindow?: string;
   notes?: string;
   items: OrderItemInput[];
-  otpToken?: string;
 }
 
 @Injectable()
@@ -39,7 +37,6 @@ export class OrdersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly config: ConfigService,
-    private readonly otp: OtpService,
     private readonly mail: MailService,
   ) {}
 
@@ -59,11 +56,9 @@ export class OrdersService {
     let tempPassword: string | null = null;
     let createdNewUser = false;
 
-    // Phone+OTP verification path is for guest checkout only
+    // Guest bookings: no OTP required. Look up by phone/email; create a lightweight
+    // account on first booking so the customer can track + log in later.
     if (!userId) {
-      if (!input.otpToken) throw new BadRequestException('OTP token required for guest checkout');
-      const { phone } = this.otp.consume(input.otpToken, 'order');
-      if (phone !== input.phone) throw new BadRequestException('OTP phone mismatch');
       const existingByPhone = await this.prisma.user.findUnique({ where: { phone: input.phone } });
       const existingByEmail = input.email
         ? await this.prisma.user.findUnique({ where: { email: input.email } })
@@ -72,7 +67,6 @@ export class OrdersService {
       if (existing) {
         userId = existing.id;
       } else {
-        // Create auto-account
         tempPassword = randomBytes(6).toString('hex');
         const hash = await bcrypt.hash(tempPassword, 10);
         const created = await this.prisma.user.create({
@@ -81,7 +75,7 @@ export class OrdersService {
             phone: input.phone,
             email: input.email,
             passwordHash: hash,
-            phoneVerified: true,
+            phoneVerified: false,
             status: UserStatus.ACTIVE,
             role: 'CUSTOMER',
           },
@@ -123,8 +117,8 @@ export class OrdersService {
         customerEmail: input.email,
         address: input.address,
         area: input.area,
-        preferredDate: new Date(input.preferredDate),
-        timeWindow: input.timeWindow,
+        preferredDate: input.preferredDate ? new Date(input.preferredDate) : new Date(),
+        timeWindow: input.timeWindow || 'to-confirm',
         notes: input.notes,
         subtotal: new Prisma.Decimal(subtotal),
         total: new Prisma.Decimal(subtotal),

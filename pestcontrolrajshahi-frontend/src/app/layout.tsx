@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { getSettings, buildThemeCss, fontHref } from "@/lib/settings";
 import { QueryProvider } from "@/components/shared/QueryProvider";
-import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,7 +22,7 @@ export default async function RootLayout({
   const settings = await getSettings();
   const typography = settings["theme.typography"] || {};
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -34,10 +33,8 @@ export default async function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: buildThemeCss(settings) }} />
       </head>
       <body className="bg-background text-foreground font-sans antialiased">
-        <ThemeProvider>
-          <QueryProvider>{children}</QueryProvider>
-          <Toaster richColors position="top-right" />
-        </ThemeProvider>
+        <QueryProvider>{children}</QueryProvider>
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

@@ -49,14 +49,18 @@ function setAuthCookies(
   cookiePrefix: string,
   tokens: { accessToken: string; refreshToken: string; accessMaxAge: number; refreshMaxAge: number },
   isProd: boolean,
+  cookieDomain?: string,
 ) {
   const sc = scope === 'ADMIN' ? 'admin' : 'customer';
-  const base = {
+  const base: Record<string, any> = {
     path: '/',
     httpOnly: true,
     secure: isProd,
-    sameSite: 'lax' as const,
+    // SameSite=none required for cross-subdomain XHR (frontend.X.com → backend.X.com).
+    // Browsers refuse SameSite=none cookies without Secure, so this only kicks in in prod.
+    sameSite: isProd ? ('none' as const) : ('lax' as const),
   };
+  if (cookieDomain) base.domain = cookieDomain;
   reply.setCookie(`${cookiePrefix}_${sc}_access`, tokens.accessToken, {
     ...base,
     maxAge: tokens.accessMaxAge,
@@ -67,10 +71,12 @@ function setAuthCookies(
   });
 }
 
-function clearAuthCookies(reply: FastifyReply, cookiePrefix: string) {
+function clearAuthCookies(reply: FastifyReply, cookiePrefix: string, cookieDomain?: string) {
+  const opts: Record<string, any> = { path: '/' };
+  if (cookieDomain) opts.domain = cookieDomain;
   for (const sc of ['admin', 'customer']) {
     for (const k of ['access', 'refresh']) {
-      reply.clearCookie(`${cookiePrefix}_${sc}_${k}`, { path: '/' });
+      reply.clearCookie(`${cookiePrefix}_${sc}_${k}`, opts);
     }
   }
 }
@@ -79,6 +85,7 @@ function clearAuthCookies(reply: FastifyReply, cookiePrefix: string) {
 export class AuthController {
   private isProd: boolean;
   private cookiePrefix: string;
+  private cookieDomain?: string;
 
   constructor(
     private readonly auth: AuthService,
@@ -86,6 +93,7 @@ export class AuthController {
   ) {
     this.isProd = config.get<string>('nodeEnv') === 'production';
     this.cookiePrefix = config.get<string>('cookiePrefix')!;
+    this.cookieDomain = config.get<string>('cookie.domain') || undefined;
   }
 
   @Public()
@@ -99,7 +107,7 @@ export class AuthController {
       userAgent: String(req.headers['user-agent'] || ''),
       ip: req.ip,
     });
-    setAuthCookies(reply, 'CUSTOMER', this.cookiePrefix, result.tokens, this.isProd);
+    setAuthCookies(reply, 'CUSTOMER', this.cookiePrefix, result.tokens, this.isProd, this.cookieDomain);
     return { user: result.user };
   }
 
@@ -115,7 +123,7 @@ export class AuthController {
       userAgent: String(req.headers['user-agent'] || ''),
       ip: req.ip,
     });
-    setAuthCookies(reply, 'CUSTOMER', this.cookiePrefix, result.tokens, this.isProd);
+    setAuthCookies(reply, 'CUSTOMER', this.cookiePrefix, result.tokens, this.isProd, this.cookieDomain);
     return { user: result.user };
   }
 
@@ -131,7 +139,7 @@ export class AuthController {
       userAgent: String(req.headers['user-agent'] || ''),
       ip: req.ip,
     });
-    setAuthCookies(reply, 'ADMIN', this.cookiePrefix, result.tokens, this.isProd);
+    setAuthCookies(reply, 'ADMIN', this.cookiePrefix, result.tokens, this.isProd, this.cookieDomain);
     return { user: result.user };
   }
 
@@ -154,7 +162,7 @@ export class AuthController {
       userAgent: String(req.headers['user-agent'] || ''),
       ip: req.ip,
     });
-    setAuthCookies(reply, 'CUSTOMER', this.cookiePrefix, result.tokens, this.isProd);
+    setAuthCookies(reply, 'CUSTOMER', this.cookiePrefix, result.tokens, this.isProd, this.cookieDomain);
     const url = `${this.config.get<string>('publicSiteUrl')}/account`;
     reply.redirect(url, 302);
   }
@@ -172,7 +180,7 @@ export class AuthController {
       userAgent: String(req.headers['user-agent'] || ''),
       ip: req.ip,
     });
-    setAuthCookies(reply, scope, this.cookiePrefix, tokens, this.isProd);
+    setAuthCookies(reply, scope, this.cookiePrefix, tokens, this.isProd, this.cookieDomain);
     return { ok: true };
   }
 
@@ -183,7 +191,7 @@ export class AuthController {
     const cookies = (req as any).cookies || {};
     await this.auth.logout(cookies[`${this.cookiePrefix}_admin_refresh`]);
     await this.auth.logout(cookies[`${this.cookiePrefix}_customer_refresh`]);
-    clearAuthCookies(reply, this.cookiePrefix);
+    clearAuthCookies(reply, this.cookiePrefix, this.cookieDomain);
     return { ok: true };
   }
 

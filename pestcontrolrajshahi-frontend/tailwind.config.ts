@@ -8,7 +8,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: { center: false, padding: "5%", screens: { sm: "100%", md: "100%", lg: "100%", xl: "100%", "2xl": "100%" } },
+    container: { center: true, padding: "5vw" },
     extend: {
       colors: {
         border: "hsl(var(--border))",

@@ -28,7 +28,7 @@ export class PublicOrdersController {
     private readonly config: ConfigService,
   ) {}
 
-  /** Public endpoint: works for both guest (with otpToken) and logged-in customer. */
+  /** Public endpoint: accepts guest bookings (no OTP) and logged-in customer orders. */
   @Public()
   @Post()
   async create(@Body() body: any, @Req() req: FastifyRequest) {

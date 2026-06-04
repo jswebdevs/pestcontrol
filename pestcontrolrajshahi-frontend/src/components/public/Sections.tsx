@@ -3,6 +3,7 @@ import * as LIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CldImage } from "@/components/shared/CldImage";
+import { BookNowButton } from "@/components/public/BookNowButton";
 
 function Icon({ name, className }: { name?: string; className?: string }) {
   if (!name) return null;
@@ -90,27 +91,21 @@ export function ServiceCards({ services, title, sub }: { services: any[]; title?
           {services.slice(0, 9).map((s: any) => (
             <Link key={s.id} href={`/services/${s.slug}`} className="group">
               <Card className="overflow-hidden hover:shadow-lg transition border-border/60 h-full">
-                <CldImage
-                  publicId={s.image}
-                  alt={s.name}
-                  w={640}
-                  h={384}
-                  className="size-full object-cover"
-                />
-              <CardContent className="p-5 space-y-2">
-                <div className="font-heading font-semibold text-lg group-hover:text-primary transition">{s.name}</div>
-                <p className="text-sm text-muted-foreground line-clamp-2">{s.shortDesc}</p>
-                {s.basePrice && (
-                  <div className="text-sm font-medium pt-2">
-                    From <span className="text-primary">৳{Number(s.basePrice).toFixed(0)}</span>{" "}
-                    <span className="text-muted-foreground text-xs">{s.priceUnit}</span>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
+                <CldImage publicId={s.image} alt={s.name} w={640} h={384} className="size-full object-cover" />
+                <CardContent className="p-5 space-y-2">
+                  <div className="font-heading font-semibold text-lg group-hover:text-primary transition">{s.name}</div>
+                  <p className="text-sm text-muted-foreground line-clamp-2">{s.shortDesc}</p>
+                  {s.basePrice && (
+                    <div className="text-sm font-medium pt-2">
+                      From <span className="text-primary">৳{Number(s.basePrice).toFixed(0)}</span>{" "}
+                      <span className="text-muted-foreground text-xs">{s.priceUnit}</span>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
         <div className="text-center mt-10">
           <Button asChild variant="outline" size="lg">
             <Link href="/services">View all services</Link>
@@ -140,7 +135,7 @@ export function HowItWorks({ howItWorks }: { howItWorks: any }) {
                 <p className="text-sm text-muted-foreground">{step.desc}</p>
               </div>
               {i < howItWorks.steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 -right-3 size-6 rounded-full bg-primary text-primary-foreground grid place-items-center text-xs font-bold">
+                <div className="hidden lg:grid absolute top-12 -right-3 size-6 rounded-full bg-primary text-primary-foreground place-items-center text-xs font-bold">
                   {i + 2}
                 </div>
               )}
@@ -210,17 +205,16 @@ export function Testimonials({ testimonials, title }: { testimonials: any[]; tit
 
 export function FinalCTA({ cta }: { cta: any }) {
   if (!cta) return null;
+  const label = cta.cta?.label || "Book now";
   return (
     <section className="py-20 md:py-28">
       <div className="container">
         <div className="rounded-3xl p-10 md:p-16 bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-center relative overflow-hidden">
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">{cta.title}</h2>
           {cta.sub && <p className="text-lg opacity-90 max-w-xl mx-auto mb-6">{cta.sub}</p>}
-          {cta.cta?.href && (
-            <Button asChild size="lg" variant="secondary" className="rounded-full px-8">
-              <Link href={cta.cta.href}>{cta.cta.label}</Link>
-            </Button>
-          )}
+          <BookNowButton size="lg" variant="secondary" className="rounded-full px-8">
+            {label}
+          </BookNowButton>
         </div>
       </div>
     </section>

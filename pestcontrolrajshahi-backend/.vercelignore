@@ -1,0 +1,6 @@
+dist
+test
+*.log
+.env*
+!.env.example
+graphify-out

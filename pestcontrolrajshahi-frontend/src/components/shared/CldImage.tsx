@@ -10,11 +10,19 @@ interface Props extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src" | 
 }
 
 /**
- * Renders a Cloudinary image, or a placeholder showing the target dimensions
- * when no publicId is set. Pass `w`/`h` to declare the slot's intended size
- * (e.g. <CldImage w={1200} h={600} />).
+ * Renders a Cloudinary image, or — when publicId is empty — a placeholder
+ * showing the target dimensions (e.g. "1200 × 600") so designers can see the
+ * intended size while content is being authored.
  */
-export function CldImage({ publicId, alt, w = 1200, h, crop = "limit", className, ...rest }: Props) {
+export function CldImage({
+  publicId,
+  alt,
+  w = 1200,
+  h,
+  crop = "limit",
+  className,
+  ...rest
+}: Props) {
   if (!publicId) {
     const aspect = h ? `${w}/${h}` : "16/9";
     const display = h ? `${w} × ${h}` : `${w} × auto`;
