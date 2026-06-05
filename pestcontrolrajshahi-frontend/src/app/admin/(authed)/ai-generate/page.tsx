@@ -69,13 +69,11 @@ export default function AiGeneratePage() {
     { key: "contact", label: "Contact intro", state: "idle" },
     { key: "faqs", label: "FAQs", state: "idle" },
     { key: "testimonials", label: "Testimonials", state: "idle" },
-    { key: "projects", label: "Portfolio / projects (8)", state: "idle" },
     { key: "privacy", label: "Privacy policy", state: "idle" },
     { key: "refund", label: "Refund policy", state: "idle" },
     { key: "terms", label: "Terms of service", state: "idle" },
   ]);
   const [services, setServices] = useState<ServiceResult[]>([]);
-  const [projects, setProjects] = useState<Array<{ title: string; slug: string; summary: string; imagePrompt?: string; imageUrl?: string }>>([]);
   const [heroImage, setHeroImage] = useState<{ url: string; publicId: string } | null>(null);
   const [wipeExisting, setWipeExisting] = useState(true);
 
@@ -134,7 +132,7 @@ export default function AiGeneratePage() {
     })));
 
     try {
-      // Stage 1 — global sections in parallel
+      // Stage 1 — global sections in parallel (no projects/portfolio — site is gallery-only)
       const stage1 = [
         runSection("home", "/admin/ai/home").catch(() => null),
         runSection("footer", "/admin/ai/footer").catch(() => null),
@@ -142,17 +140,8 @@ export default function AiGeneratePage() {
         runSection("contact", "/admin/ai/contact").catch(() => null),
         runSection("faqs", "/admin/ai/faqs", { serviceNames }).catch(() => null),
         runSection("testimonials", "/admin/ai/testimonials", { serviceNames }).catch(() => null),
-        runSection("projects", "/admin/ai/projects", { serviceNames, count: 8 }).catch(() => null),
       ];
-      const [home, _f, _a, _c, _q, _t, projectsData] = await Promise.all(stage1);
-      if (projectsData?.items?.length) {
-        setProjects(projectsData.items.map((p: any) => ({
-          title: p.title,
-          slug: p.slug,
-          summary: p.summary,
-          imagePrompt: p.imagePrompt,
-        })));
-      }
+      const [home] = await Promise.all(stage1);
 
       // Stage 2 — policies (sequential to be gentle on rate limits)
       await runSection("privacy", "/admin/ai/policy", { kind: "privacy" }).catch(() => null);
@@ -221,27 +210,6 @@ export default function AiGeneratePage() {
             toast.error(`${current.name} image: ${e?.response?.data?.message?.message || e?.message}`);
           }
         }
-
-        // Per-project images
-        const projItems = projectsData?.items || [];
-        for (let i = 0; i < projItems.length; i++) {
-          const p = projItems[i];
-          if (!p?.imagePrompt) continue;
-          try {
-            const img = await apiPost<any>("/admin/ai/image", {
-              prompt: p.imagePrompt,
-              folderTag: `project-${p.slug || p.title}`,
-              alt: p.title,
-            });
-            projItems[i].imageUrl = img.url;
-            projItems[i].imagePublicId = img.publicId;
-            setProjects((cur) =>
-              cur.map((x, idx) => (idx === i ? { ...x, imageUrl: img.url } : x)),
-            );
-          } catch (e: any) {
-            toast.error(`Project ${p.title} image: ${e?.response?.data?.message?.message || e?.message}`);
-          }
-        }
       }
 
       toast.success("Generation complete. Review and click Apply to save.");
@@ -252,7 +220,6 @@ export default function AiGeneratePage() {
 
   async function applyAll() {
     const get = (key: string) => sections.find((s) => s.key === key)?.result;
-    const projectsResult = get("projects");
     const payload = {
       wipeContent: wipeExisting,
       home: get("home"),
@@ -284,18 +251,6 @@ export default function AiGeneratePage() {
           imageUrl: s.imageUrl,
           imagePublicId: s.imagePublicId,
         })),
-      projects: (projectsResult?.items || []).map((p: any) => ({
-        title: p.title,
-        slug: p.slug,
-        client: p.client,
-        category: p.category,
-        summary: p.summary,
-        bodyParagraphs: p.bodyParagraphs,
-        dateIso: p.dateIso,
-        imagePrompt: p.imagePrompt,
-        imageUrl: p.imageUrl,
-        imagePublicId: p.imagePublicId,
-      })),
     };
     try {
       const res = await apiPost<any>("/admin/ai/apply", payload);
@@ -350,7 +305,7 @@ export default function AiGeneratePage() {
               disabled={running}
             />
             <Label htmlFor="img" className="cursor-pointer">
-              Also generate images (hero + per-service + per-project)
+              Also generate images (hero + per-service)
             </Label>
           </div>
           <div className="flex items-center gap-3">
@@ -361,7 +316,7 @@ export default function AiGeneratePage() {
               disabled={running}
             />
             <Label htmlFor="wipe" className="cursor-pointer">
-              Wipe existing services + projects on apply (recommended for first run)
+              Wipe existing services on apply (recommended for first run)
             </Label>
           </div>
           <div className="flex gap-2">
@@ -419,31 +374,6 @@ export default function AiGeneratePage() {
         </Card>
       )}
 
-      {/* Projects (portfolio) */}
-      {projects.length > 0 && (
-        <Card>
-          <CardContent className="p-5 space-y-3">
-            <h2 className="font-heading text-lg font-bold">Portfolio</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {projects.map((p, i) => (
-                <div key={i} className="border rounded-lg overflow-hidden">
-                  {p.imageUrl ? (
-                    <img src={p.imageUrl} alt={p.title} className="w-full aspect-square object-cover" />
-                  ) : (
-                    <div className="w-full aspect-square bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                      image pending
-                    </div>
-                  )}
-                  <div className="p-2 text-xs">
-                    <div className="font-medium truncate">{p.title}</div>
-                    <div className="text-muted-foreground truncate">{p.slug}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }

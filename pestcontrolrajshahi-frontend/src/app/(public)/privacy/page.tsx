@@ -1,29 +1,17 @@
 import { getSettings } from "@/lib/settings";
+import { LegalPolicy } from "@/components/public/LegalPolicy";
 
 export const revalidate = 60;
 
-function renderDoc(doc: any): string {
-  if (!doc?.content) return "";
-  return doc.content
-    .map((node: any) => {
-      if (node.type === "paragraph") {
-        const inner = (node.content || [])
-          .map((c: any) => c.text || "")
-          .join("");
-        return `<p>${inner}</p>`;
-      }
-      return "";
-    })
-    .join("");
-}
+export const metadata = {
+  title: "Privacy Policy",
+  description:
+    "How Pest Control Rajshahi collects, uses, and protects your personal information in compliance with Bangladesh law.",
+};
 
 export default async function PrivacyPage() {
   const settings = await getSettings();
-  const html = renderDoc(settings["legal.privacy"]);
   return (
-    <article className="container max-w-3xl py-16 prose prose-slate max-w-none">
-      <h1>Privacy Policy</h1>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-    </article>
+    <LegalPolicy value={settings["legal.privacy"]} fallbackHeading="Privacy Policy" />
   );
 }

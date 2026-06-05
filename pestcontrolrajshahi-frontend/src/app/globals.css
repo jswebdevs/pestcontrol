@@ -74,4 +74,20 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
   }
+  /* Every interactive control should have a pointer cursor. Covers raw <button>
+   * elements + Radix triggers (Tabs, Select, Dropdown, Dialog, Checkbox, etc.)
+   * + any element semantically marked as a button. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"]:not([aria-disabled="true"]),
+  [role="menuitem"]:not([aria-disabled="true"]),
+  [role="switch"]:not([aria-disabled="true"]),
+  [role="checkbox"]:not([aria-disabled="true"]),
+  summary {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
 }

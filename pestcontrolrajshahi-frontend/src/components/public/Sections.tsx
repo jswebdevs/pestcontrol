@@ -121,8 +121,9 @@ export function ServiceCards({ services, title, sub }: { services: any[]; title?
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">{title || "Our Services"}</h2>
           {sub && <p className="text-muted-foreground max-w-2xl mx-auto">{sub}</p>}
         </div>
+        {/* Homepage shows 6 services = 2 rows × 3 cols on desktop. Full catalog at /services. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.slice(0, 9).map((s: any) => (
+          {services.slice(0, 6).map((s: any) => (
             <Link key={s.id} href={`/services/${s.slug}`} className="group">
               <Card className="overflow-hidden hover:shadow-lg transition border-border/60 h-full p-0 gap-0">
                 {/* Fixed 4:3 image well so every card has the same image height */}

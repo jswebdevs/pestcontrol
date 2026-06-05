@@ -1,33 +1,17 @@
 import { getSettings } from "@/lib/settings";
+import { LegalPolicy } from "@/components/public/LegalPolicy";
 
 export const revalidate = 60;
 
-function renderDoc(doc: any): string {
-  if (!doc?.content) return "";
-  return doc.content
-    .map((node: any) => {
-      if (node.type === "paragraph") {
-        const inner = (node.content || [])
-          .map((c: any) => c.text || "")
-          .join("");
-        return `<p>${inner}</p>`;
-      }
-      return "";
-    })
-    .join("");
-}
+export const metadata = {
+  title: "Refund Policy",
+  description:
+    "Refund and re-treatment guarantee for Pest Control Rajshahi customers, with bKash / Nagad / bank refund options.",
+};
 
 export default async function RefundPolicyPage() {
   const settings = await getSettings();
-  const html = renderDoc(settings["legal.refund"]);
   return (
-    <article className="container max-w-3xl py-16 prose prose-slate dark:prose-invert">
-      <h1>Refund Policy</h1>
-      {html ? (
-        <div dangerouslySetInnerHTML={{ __html: html }} />
-      ) : (
-        <p className="text-muted-foreground">No refund policy has been published yet.</p>
-      )}
-    </article>
+    <LegalPolicy value={settings["legal.refund"]} fallbackHeading="Refund Policy" />
   );
 }

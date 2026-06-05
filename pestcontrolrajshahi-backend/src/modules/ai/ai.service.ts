@@ -474,7 +474,7 @@ export class AiService {
           gallery: [],
           basePrice: s.basePrice ? new Prisma.Decimal(s.basePrice) : null,
           priceUnit: s.priceUnit || null,
-          featured: order < 4,
+          featured: order < 6,
           status: 'PUBLISHED' as ContentStatus,
           publishedAt: new Date(),
           // Reactivate if a previous wipe (or a manual delete) marked the row.

@@ -27,6 +27,7 @@ import { ContactModule } from './modules/contact/contact.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { AiModule } from './modules/ai/ai.module';
+import { GalleryModule } from './modules/gallery/gallery.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { AiModule } from './modules/ai/ai.module';
     OrdersModule,
     DashboardModule,
     AiModule,
+    GalleryModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },

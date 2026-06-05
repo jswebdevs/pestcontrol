@@ -195,6 +195,22 @@ model PreviewToken {
   createdAt    DateTime @default(now())
 }
 
+// Public-gallery image (separate from the case-study "Project" model).
+// Curated by an admin; supports captions, optional category groups, ordering,
+// and visibility toggle. Image is a Cloudinary publicId OR a /public/ URL.
+model GalleryItem {
+  id        String   @id @default(cuid())
+  image     String
+  caption   String?
+  category  String?
+  order     Int      @default(0)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isVisible, order])
+}
+
 // ─────────────────────────────────────────────────────────────
 //  ORDERS
 // ─────────────────────────────────────────────────────────────

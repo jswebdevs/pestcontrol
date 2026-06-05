@@ -24,6 +24,13 @@ async function bootstrap() {
   app.enableCors({
     origin: (process.env.CORS_ORIGINS ?? '').split(',').filter(Boolean),
     credentials: true,
+    // Fastify's CORS plugin only allows GET/HEAD/POST by default. Without
+    // PATCH/PUT/DELETE listed here, the browser's CORS preflight blocks every
+    // admin write — and the failed request reads as "Status: null / CORS
+    // request did not succeed" in the browser console. Curl/server-to-server
+    // is unaffected because it doesn't preflight.
+    methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   });
   app.setGlobalPrefix('api');
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
