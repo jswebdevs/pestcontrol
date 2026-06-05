@@ -7,8 +7,9 @@ import { CheckCircle2, XCircle } from "lucide-react";
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const s = await serverFetch<any>(`/services/${params.slug}`);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const s = await serverFetch<any>(`/services/${slug}`);
   if (!s) return {};
   return {
     title: s.seoTitle || s.name,
@@ -20,19 +21,21 @@ export default async function ServicePage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { preview?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ preview?: string }>;
 }) {
-  let service = searchParams.preview
-    ? (await serverFetch<any>(`/preview/${searchParams.preview}`))?.payload
-    : await serverFetch<any>(`/services/${params.slug}`);
+  const { slug } = await params;
+  const { preview } = await searchParams;
+  const service = preview
+    ? (await serverFetch<any>(`/preview/${preview}`))?.payload
+    : await serverFetch<any>(`/services/${slug}`);
   if (!service) notFound();
 
   const bullets: string[] = service.inclusions ?? [];
 
   return (
     <article className="container py-12">
-      {searchParams.preview && (
+      {preview && (
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/40 text-amber-900 dark:text-amber-200 px-4 py-2 mb-6 text-sm font-medium">
           🔍 PREVIEW — not visible to visitors
         </div>

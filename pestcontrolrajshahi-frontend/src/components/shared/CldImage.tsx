@@ -23,6 +23,26 @@ export function CldImage({
   className,
   ...rest
 }: Props) {
+  // Pass-through for absolute URLs and root-relative paths (e.g. /icon.jpg).
+  // The admin can store either a Cloudinary publicId OR a local public/ URL here.
+  const isRawUrl =
+    typeof publicId === "string" &&
+    (publicId.startsWith("/") || publicId.startsWith("http://") || publicId.startsWith("https://"));
+  if (isRawUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={publicId as string}
+        alt={alt}
+        width={w}
+        height={h}
+        className={className}
+        loading="lazy"
+        {...rest}
+      />
+    );
+  }
+
   if (!publicId) {
     const aspect = h ? `${w}/${h}` : "16/9";
     const display = h ? `${w} × ${h}` : `${w} × auto`;

@@ -1,3 +1,8 @@
 allowBuilds:
   msw: true
+  sharp: true
   unrs-resolver: true
+
+# Frontend dev/build skips the strict deps-vs-lockfile check so Next.js dev
+# server can boot when transient peer-dep warnings exist (React 19/Next 16).
+verifyDepsBeforeRun: false

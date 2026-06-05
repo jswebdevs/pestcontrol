@@ -33,4 +33,14 @@ export const envValidationSchema = Joi.object({
   SEED_ADMIN_EMAIL: Joi.string().email().required(),
   SEED_ADMIN_PHONE: Joi.string().required(),
   SEED_ADMIN_PASSWORD: Joi.string().min(8).required(),
+  GEMINI_API_KEY: Joi.string().allow('').default(''),
+  GEMINI_TEXT_MODELS: Joi.string().allow('').default(
+    'gemini-3.5-flash,gemini-3.1-pro-preview,gemini-3.1-flash-lite,gemini-2.5-pro,gemini-3-flash-preview',
+  ),
+  GEMINI_IMAGE_MODELS: Joi.string().allow('').default(
+    'gemini-2.5-flash-image,gemini-3.1-flash-image,gemini-3-pro-image,gemini-3.1-flash-image-preview,nano-banana-pro-preview',
+  ),
+  GEMINI_IMAGE_MODEL: Joi.string().allow('').optional(),
+  GEMINI_MAX_RETRIES_PER_MODEL: Joi.number().integer().min(1).max(10).default(3),
+  COOKIE_DOMAIN: Joi.string().allow('').default(''),
 });

@@ -10,7 +10,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: seo.title || process.env.NEXT_PUBLIC_SITE_NAME || "Pest Control Rajshahi",
     description: seo.description || "",
-    icons: { icon: "/favicon.ico" },
+    icons: {
+      icon: [
+        { url: "/icon.jpg", type: "image/jpeg" },
+      ],
+      shortcut: "/icon.jpg",
+      apple: "/icon.jpg",
+    },
   };
 }
 

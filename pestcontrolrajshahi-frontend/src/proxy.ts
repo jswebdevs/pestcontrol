@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4001/api/v1";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/v1";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   // Only check /services/[slug] and /projects/[slug]
   const match = /^\/(services|projects)\/([^/]+)$/.exec(pathname);

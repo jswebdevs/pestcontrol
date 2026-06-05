@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 const COOKIE_PREFIX = "pcr";
 
 export async function getAdminSession() {
-  const c = cookies();
+  const c = await cookies();
   const access = c.get(`${COOKIE_PREFIX}_admin_access`)?.value;
   if (!access) return null;
   try {

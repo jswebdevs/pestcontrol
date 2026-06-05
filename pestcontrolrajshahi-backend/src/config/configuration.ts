@@ -1,9 +1,9 @@
 export default () => ({
   nodeEnv: process.env.NODE_ENV || 'development',
-  port: parseInt(process.env.PORT ?? '4000', 10),
+  port: parseInt(process.env.PORT ?? '3000', 10),
   appName: process.env.APP_NAME || 'API',
   cookiePrefix: process.env.COOKIE_PREFIX || 'app',
-  publicSiteUrl: process.env.PUBLIC_SITE_URL || 'http://localhost:3000',
+  publicSiteUrl: process.env.PUBLIC_SITE_URL || 'http://localhost:5173',
   corsOrigins: (process.env.CORS_ORIGINS ?? '').split(',').filter(Boolean),
   jwt: {
     accessSecret: process.env.JWT_ACCESS_SECRET!,
@@ -43,6 +43,25 @@ export default () => ({
     adminEmail: process.env.SEED_ADMIN_EMAIL || 'admin@example.com',
     adminPhone: process.env.SEED_ADMIN_PHONE || '01700000000',
     adminPassword: process.env.SEED_ADMIN_PASSWORD || 'ChangeMe!2026',
+  },
+  gemini: {
+    apiKey: process.env.GEMINI_API_KEY || '',
+    textModels: (
+      process.env.GEMINI_TEXT_MODELS ||
+      'gemini-3.5-flash,gemini-3.1-pro-preview,gemini-3.1-flash-lite,gemini-2.5-pro,gemini-3-flash-preview'
+    )
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
+    imageModels: (
+      process.env.GEMINI_IMAGE_MODELS ||
+      process.env.GEMINI_IMAGE_MODEL ||
+      'gemini-2.5-flash-image,gemini-3.1-flash-image,gemini-3-pro-image,gemini-3.1-flash-image-preview,nano-banana-pro-preview'
+    )
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
+    maxRetriesPerModel: parseInt(process.env.GEMINI_MAX_RETRIES_PER_MODEL ?? '3', 10),
   },
 });
 

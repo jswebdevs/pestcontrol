@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+export const dynamic = "force-dynamic";
+
 export default function NotFound() {
   return (
     <section className="container py-24 md:py-32 text-center">

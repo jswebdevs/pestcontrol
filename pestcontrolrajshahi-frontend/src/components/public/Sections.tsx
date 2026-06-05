@@ -18,42 +18,76 @@ function Icon({ name, className }: { name?: string; className?: string }) {
 
 export function About({ about }: { about: any }) {
   if (!about) return null;
+  const allParas: string[] = ((about.body?.content || []) as any[])
+    .filter((n) => n.type === "paragraph")
+    .map((n) => (n.content || []).map((c: any) => c.text).join(""))
+    .filter(Boolean);
+  // Keep the right column trimmed to roughly match the left image's height.
+  // 2 paragraphs is a reasonable visual budget for a hero-style About block;
+  // anything beyond gets truncated with an ellipsis and a Read more link.
+  const visible = allParas.slice(0, 2);
+  const hasMore = allParas.length > visible.length;
+
   return (
     <section className="py-20 md:py-28">
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="rounded-3xl overflow-hidden">
-            <CldImage
-              publicId={about.image}
-              alt={about.title || "About image"}
-              w={1200}
-              h={960}
-              className="size-full object-cover rounded-3xl"
-            />
-          </div>
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
+        {/* Left — image fills the column at portrait aspect */}
+        <div className="rounded-3xl overflow-hidden bg-muted/40 aspect-4/5 lg:aspect-auto lg:min-h-130 relative">
+          <CldImage
+            publicId={about.image}
+            alt={about.title || "About"}
+            w={1200}
+            h={1500}
+            className="absolute inset-0 size-full object-cover"
+          />
         </div>
-        <div className="space-y-6">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold">{about.title}</h2>
-          {about.body?.content?.map?.((node: any, i: number) => {
-            if (node.type === "paragraph") {
-              return (
-                <p key={i} className="text-muted-foreground leading-relaxed">
-                  {node.content?.map?.((c: any) => c.text).join("")}
-                </p>
-              );
-            }
-            return null;
+
+        {/* Right — content stays inside one column, ends with Read more */}
+        <div className="flex flex-col gap-5">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold leading-tight">
+            {about.title}
+          </h2>
+          {visible.map((text, i) => {
+            const isLast = i === visible.length - 1;
+            const display = isLast && hasMore ? text.replace(/[\s.]*$/, " …") : text;
+            return (
+              <p key={i} className="text-muted-foreground leading-relaxed">
+                {display}
+              </p>
+            );
           })}
+
+          {/* 3 pillars stacked vertically inside the right column */}
           {about.stats?.length ? (
-            <div className="grid grid-cols-3 gap-4 pt-4">
-              {about.stats.map((s: any, i: number) => (
-                <div key={i} className="text-center">
-                  <div className="font-heading text-3xl font-bold text-primary">{s.value}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
-                </div>
+            <ul className="space-y-2.5 pt-1">
+              {about.stats.slice(0, 3).map((s: any, i: number) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 rounded-2xl border bg-card px-4 py-3"
+                >
+                  <span className="size-8 rounded-full bg-primary/10 text-primary grid place-items-center font-heading font-bold shrink-0 text-sm">
+                    {i + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-heading font-semibold text-sm leading-tight">
+                      {s.value}
+                    </div>
+                    {s.label && (
+                      <div className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                        {s.label}
+                      </div>
+                    )}
+                  </div>
+                </li>
               ))}
-            </div>
+            </ul>
           ) : null}
+
+          <div className="mt-auto pt-4">
+            <Button asChild size="lg" className="rounded-full px-7 font-semibold">
+              <Link href="/about">Read more about us</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
@@ -90,8 +124,18 @@ export function ServiceCards({ services, title, sub }: { services: any[]; title?
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.slice(0, 9).map((s: any) => (
             <Link key={s.id} href={`/services/${s.slug}`} className="group">
-              <Card className="overflow-hidden hover:shadow-lg transition border-border/60 h-full">
-                <CldImage publicId={s.image} alt={s.name} w={640} h={384} className="size-full object-cover" />
+              <Card className="overflow-hidden hover:shadow-lg transition border-border/60 h-full p-0 gap-0">
+                {/* Fixed 4:3 image well so every card has the same image height */}
+                <div className="aspect-4/3 bg-muted overflow-hidden relative">
+                  <CldImage
+                    publicId={s.image}
+                    alt={s.name}
+                    w={800}
+                    h={600}
+                    crop="fill"
+                    className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
                 <CardContent className="p-5 space-y-2">
                   <div className="font-heading font-semibold text-lg group-hover:text-primary transition">{s.name}</div>
                   <p className="text-sm text-muted-foreground line-clamp-2">{s.shortDesc}</p>
@@ -156,7 +200,7 @@ export function WhyChooseUs({ whyChooseUs }: { whyChooseUs: any }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {whyChooseUs.points.map((point: any, i: number) => (
             <div key={i} className="text-center p-6 rounded-2xl border bg-card">
-              <div className="size-14 rounded-full bg-accent/15 text-accent-foreground grid place-items-center mx-auto mb-4">
+              <div className="size-14 rounded-full bg-emerald-500/15 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 grid place-items-center mx-auto mb-4">
                 <Icon name={point.icon} className="size-6" />
               </div>
               <div className="font-heading font-semibold mb-2">{point.title}</div>

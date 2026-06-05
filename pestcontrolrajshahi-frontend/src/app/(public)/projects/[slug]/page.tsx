@@ -7,8 +7,9 @@ import { BookNowButton } from "@/components/public/BookNowButton";
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const p = await serverFetch<any>(`/projects/${params.slug}`).catch(() => null);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const p = await serverFetch<any>(`/projects/${slug}`).catch(() => null);
   if (!p) return {};
   return {
     title: p.seoTitle || p.title,
@@ -27,19 +28,21 @@ export default async function ProjectDetailPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { preview?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ preview?: string }>;
 }) {
-  const project = searchParams.preview
-    ? (await serverFetch<any>(`/preview/${searchParams.preview}`).catch(() => null))?.payload
-    : await serverFetch<any>(`/projects/${params.slug}`).catch(() => null);
+  const { slug } = await params;
+  const { preview } = await searchParams;
+  const project = preview
+    ? (await serverFetch<any>(`/preview/${preview}`).catch(() => null))?.payload
+    : await serverFetch<any>(`/projects/${slug}`).catch(() => null);
   if (!project) notFound();
 
   const gallery: string[] = project.gallery ?? [];
 
   return (
     <article className="container py-12 max-w-5xl">
-      {searchParams.preview && (
+      {preview && (
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/40 text-amber-900 dark:text-amber-200 px-4 py-2 mb-6 text-sm font-medium">
           🔍 PREVIEW — not visible to visitors
         </div>

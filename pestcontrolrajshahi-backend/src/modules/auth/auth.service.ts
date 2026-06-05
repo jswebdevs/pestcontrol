@@ -361,7 +361,7 @@ export class AuthService {
         { sub: user.id, kind: 'reset' },
         { secret: this.config.get<string>('jwt.accessSecret')!, expiresIn: '1h' },
       );
-      const link = `${this.config.get<string>('publicSiteUrl')}/reset-password?token=${token}`;
+      const link = `${this.config.get<string>('publicSiteUrl')}/admin/reset-password?token=${token}`;
       await this.mail.send('password-reset-link', user.email, { link });
     } else if (user.phone) {
       await this.otp.send(user.phone, 'reset');

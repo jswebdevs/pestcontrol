@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -46,7 +47,15 @@ export default function AdminLogin() {
                 <Input {...form.register("identifier")} />
               </div>
               <div className="grid gap-2">
-                <Label>Password</Label>
+                <div className="flex justify-between items-center">
+                  <Label>Password</Label>
+                  <Link
+                    href="/admin/forgot-password"
+                    className="text-xs text-primary hover:underline"
+                  >
+                    Forgot?
+                  </Link>
+                </div>
                 <Input type="password" {...form.register("password")} />
               </div>
               <Button type="submit" disabled={form.formState.isSubmitting}>

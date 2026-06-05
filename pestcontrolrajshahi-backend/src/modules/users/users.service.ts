@@ -236,7 +236,7 @@ export class UsersService {
         { sub: user.id, kind: 'reset' },
         { secret: this.config.get<string>('jwt.accessSecret')!, expiresIn: '1h' },
       );
-      const link = `${this.config.get<string>('publicSiteUrl')}/reset-password?token=${token}`;
+      const link = `${this.config.get<string>('publicSiteUrl')}/admin/reset-password?token=${token}`;
       await this.mail.send('password-reset-link', user.email, { link });
       return { ok: true, via: 'email' };
     }
