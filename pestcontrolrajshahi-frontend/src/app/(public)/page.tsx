@@ -38,7 +38,13 @@ export default async function HomePage() {
       />
       <HowItWorks howItWorks={settings["home.howItWorks"]} />
       <WhyChooseUs whyChooseUs={settings["home.whyChooseUs"]} />
-      <Testimonials testimonials={testimonials || []} title={settings["home.testimonials"]?.title} />
+      <Testimonials
+        testimonials={testimonials || []}
+        title={settings["home.testimonials"]?.title}
+        facebookUrl={(settings["footer.contact"]?.socials || []).find(
+          (s: any) => s.icon?.toLowerCase() === "facebook",
+        )?.href}
+      />
       <FinalCTA cta={settings["home.finalCta"]} />
     </>
   );
