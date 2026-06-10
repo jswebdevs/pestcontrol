@@ -3,7 +3,8 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/docs", "destination": "/api" },
-    { "source": "/docs/(.*)", "destination": "/api" }
+    { "source": "/docs/(.*)", "destination": "/api" },
+    { "source": "/", "destination": "/api" }
   ],
   "functions": {
     "api/index.ts": {

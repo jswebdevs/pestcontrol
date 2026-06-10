@@ -28,6 +28,7 @@ import { OrdersModule } from './modules/orders/orders.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { AiModule } from './modules/ai/ai.module';
 import { GalleryModule } from './modules/gallery/gallery.module';
+import { RootModule } from './modules/root/root.module';
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { GalleryModule } from './modules/gallery/gallery.module';
     DashboardModule,
     AiModule,
     GalleryModule,
+    RootModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
