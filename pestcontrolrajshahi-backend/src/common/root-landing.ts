@@ -1,23 +1,15 @@
-import { Controller, Get, Res } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { FastifyReply } from 'fastify';
+// HTML payload for the API host root (e.g. https://backend.pestcontrolrajshahi.com/).
+// Used by both the local main.ts bootstrap and the Vercel api/index.ts entry —
+// registered as a direct Fastify route (NestJS's setGlobalPrefix exclude is
+// unreliable on the Fastify adapter).
 
-// Friendly landing for anyone who hits the API host root (e.g.
-// https://backend.pestcontrolrajshahi.com/). Says where they are and bounces
-// them to the public site after 5 seconds via meta-refresh + JS fallback.
-@Controller()
-export class RootController {
-  constructor(private readonly config: ConfigService) {}
-
-  @Get()
-  root(@Res() reply: FastifyReply) {
-    const siteUrl =
-      this.config.get<string>('publicSiteUrl') ||
-      process.env.PUBLIC_SITE_URL ||
-      'https://www.pestcontrolrajshahi.com';
-    const appName = process.env.APP_NAME || 'Pest Control Rajshahi';
-    const escaped = siteUrl.replace(/"/g, '&quot;');
-    const html = `<!doctype html>
+export function buildRootLandingHtml(): string {
+  const siteUrl =
+    process.env.PUBLIC_SITE_URL || 'https://www.pestcontrolrajshahi.com';
+  const appName = process.env.APP_NAME || 'Pest Control Rajshahi';
+  const escaped = siteUrl.replace(/"/g, '&quot;');
+  const baseTrimmed = escaped.replace(/\/$/, '');
+  return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -44,6 +36,7 @@ export class RootController {
       .muted { color: #94a3b8; }
       .badge { background: #14532d; color: #bbf7d0; }
       a.cta { background: #f8fafc; color: #0f172a; }
+      .small code { background: rgba(255,255,255,0.08); }
     }
     .card {
       width: 100%;
@@ -110,8 +103,8 @@ export class RootController {
     <p class="muted">Redirecting in <span id="cd" class="countdown">5</span> seconds…</p>
     <a class="cta" href="${escaped}">Go to the website now &rarr;</a>
     <p class="small">
-      API base: <code>${escaped.replace(/\/$/, '')}/api/v1</code> &middot;
-      Looking for docs? <code>/docs</code>
+      API base: <code>${baseTrimmed}/api/v1</code> &middot;
+      Docs at <code>/docs</code>
     </p>
   </main>
   <script>
@@ -128,6 +121,4 @@ export class RootController {
   </script>
 </body>
 </html>`;
-    reply.header('Cache-Control', 'public, max-age=60').type('text/html; charset=utf-8').send(html);
-  }
 }

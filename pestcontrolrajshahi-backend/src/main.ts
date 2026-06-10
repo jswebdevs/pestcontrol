@@ -1,10 +1,11 @@
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
-import { Logger, RequestMethod, ValidationPipe, VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { buildRootLandingHtml } from './common/root-landing';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -32,11 +33,18 @@ async function bootstrap() {
     methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   });
-  // Everything is under /api/* except the friendly landing on GET / which
-  // RootController serves directly.
-  app.setGlobalPrefix('api', {
-    exclude: [{ path: '/', method: RequestMethod.GET }],
+
+  // Friendly landing for the host root — registered directly on the Fastify
+  // instance so it sidesteps the global /api prefix.
+  const fastify = app.getHttpAdapter().getInstance();
+  fastify.get('/', async (_req, reply) => {
+    return reply
+      .header('Cache-Control', 'public, max-age=60')
+      .type('text/html; charset=utf-8')
+      .send(buildRootLandingHtml());
   });
+
+  app.setGlobalPrefix('api');
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalFilters(new AllExceptionsFilter());
