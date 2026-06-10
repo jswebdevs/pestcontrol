@@ -1,119 +1,95 @@
 {
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/tailwind.config.ts": {
-    "mtime": 1780584232.4470103,
-    "hash": "24a97dac10fefe3d8345b89e92cce55b"
-  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/next.config.mjs": {
-    "mtime": 1778863394.6729949,
-    "hash": "21958f5752add43cc47ab0ff5172cd46"
+    "mtime": 1780650695.8219278,
+    "hash": "9eede6e53b0a260b89a8a3b3886b82d9"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/postcss.config.mjs": {
-    "mtime": 1778863394.6742387,
-    "hash": "b7941c02b947e17ae32f67ae7e664ec8"
+    "mtime": 1780635681.963455,
+    "hash": "27808b58abfd6d09739e715b81724384"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/next-env.d.ts": {
-    "mtime": 1778859891.2808568,
-    "hash": "b5ed9dd8b4c5ba8e5ab8e6a379c15838"
+    "mtime": 1780660313.935454,
+    "hash": "d0f8375ae1199dc7acd3977fc33b78b8"
   },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/middleware.ts": {
-    "mtime": 1778942068.9947767,
-    "hash": "8d8734ce1c3198c354df787750c7e20c"
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/proxy.ts": {
+    "mtime": 1780682001.8556955,
+    "hash": "de53966657e1c8fa18c0856ad7da0f6b"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/error.tsx": {
     "mtime": 1780588220.4070392,
     "hash": "df6381881e448330f5af3a5c9e4ad040"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/not-found.tsx": {
-    "mtime": 1780588211.801615,
-    "hash": "696a9766610187b42bdfa1146d595ec0"
+    "mtime": 1780635789.0479603,
+    "hash": "a626f34b10b301804bed917e3eef8ba6"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/layout.tsx": {
-    "mtime": 1780505738.5062153,
-    "hash": "e3d694774d3249ff03573734c022c974"
+    "mtime": 1780660668.013799,
+    "hash": "74616179e56e0272f83aa80a5da9413d"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/page.tsx": {
-    "mtime": 1778942068.9845638,
-    "hash": "7d6d57b6a7fb7cdaf95b66e72e6d370d"
+    "mtime": 1781113328.2417555,
+    "hash": "e5da98c75c98cf6acb35c34885391144"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/layout.tsx": {
     "mtime": 1780586660.5660603,
     "hash": "46b1ef18b6ec950e7ac55b195ff41e59"
   },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/login/page.tsx": {
-    "mtime": 1778942068.9874763,
-    "hash": "1c199c98c25e9d0fb0ebbc5db95386b8"
-  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/privacy/page.tsx": {
-    "mtime": 1778942068.9867308,
-    "hash": "b3a25299eb826de59038e9a3fad3582f"
+    "mtime": 1780680937.744185,
+    "hash": "0ed0515c85e575b848a050cf1c2a630c"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/refund-policy/page.tsx": {
-    "mtime": 1780585170.038978,
-    "hash": "c2831da0410a0ab2d11206f9932498a8"
+    "mtime": 1780680940.4121737,
+    "hash": "4869710c27756876be507a2e26cde53a"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/services/page.tsx": {
-    "mtime": 1780583954.1012895,
-    "hash": "f71939ff6d9ca94d0b6a0e3ebd4e5fcb"
+    "mtime": 1780660448.0951936,
+    "hash": "91a8a96c4be63a43ad95835edc5c5d94"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/services/[slug]/page.tsx": {
-    "mtime": 1780585008.332459,
-    "hash": "e5ad243cf8a85dbd9738caedde3a0f98"
+    "mtime": 1780644131.7408996,
+    "hash": "b68bcf449e854c82421ed44d03756223"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/about/page.tsx": {
-    "mtime": 1778942068.984614,
-    "hash": "6d582307ed9271494563c9a58fd08698"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/reset-password/page.tsx": {
-    "mtime": 1778942068.9883296,
-    "hash": "574844f55d3f2460700d5bbbb83f398c"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/register/page.tsx": {
-    "mtime": 1778942068.9877083,
-    "hash": "fa6df9e43befc3547661e8680d3c7689"
+    "mtime": 1780660604.7139091,
+    "hash": "17d58e1625b9a6ea4949ba627b834a84"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/contact/page.tsx": {
     "mtime": 1780585124.6803637,
     "hash": "ad8d31ac66a3633a76c9ee2198b33b40"
   },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/forgot-password/page.tsx": {
-    "mtime": 1778942068.9881752,
-    "hash": "74c2b7e44966a8889ddf122cd9108a42"
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/gallery/page.tsx": {
+    "mtime": 1780678311.442099,
+    "hash": "59004aa9096da7b7bcc12fe0d9ae9ec5"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/terms/page.tsx": {
-    "mtime": 1778942068.9868796,
-    "hash": "6bfb9cdc5234238f47a0bbea10fbfdc5"
+    "mtime": 1780680921.182255,
+    "hash": "f53e901def6c1b1f1c6258d8d6786ffe"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/faq/page.tsx": {
-    "mtime": 1778942068.9855576,
-    "hash": "58c9d324385f5a0b151755b2b8214e8d"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/projects/page.tsx": {
-    "mtime": 1780583901.7168813,
-    "hash": "1d6477d886fb9d5530a915a80a5725df"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(public)/projects/[slug]/page.tsx": {
-    "mtime": 1780585077.8724213,
-    "hash": "dcb287669e938e3d8bf9ba3207474daf"
+    "mtime": 1780660806.3135657,
+    "hash": "3ff8b0434fc033d97b938b57a063d9c1"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/api/admin-logout/route.ts": {
     "mtime": 1778942069.0066478,
     "hash": "eb53c7cd37b77d6f95401f68301c9754"
   },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/api/customer-logout/route.ts": {
-    "mtime": 1778942069.0096772,
-    "hash": "0da639f2cf63ad479fdf14843810b581"
-  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/login/page.tsx": {
-    "mtime": 1778942068.9896545,
-    "hash": "809366a33954a8009fcbe17a64817b3f"
+    "mtime": 1780651691.8957903,
+    "hash": "ffd99e31ca6303ee93d89512d9288ad2"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/reset-password/page.tsx": {
+    "mtime": 1780651686.0301883,
+    "hash": "d043d76546533e4bb0fc84d6cd62ad42"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/page.tsx": {
     "mtime": 1778942068.9897146,
     "hash": "c21a7eab85495d707566d7b3e990c34c"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/layout.tsx": {
-    "mtime": 1778942068.9899404,
-    "hash": "3ea11c8c194f948372eac049c3b4170e"
+    "mtime": 1780681992.2365053,
+    "hash": "8a16371ef029e0378cb85e0b0be02d8d"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/services/page.tsx": {
     "mtime": 1780506145.2669797,
@@ -131,6 +107,18 @@
     "mtime": 1778942068.9931893,
     "hash": "bb52a42c9961f2cd4a1d5d94bd6bc1e2"
   },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/gallery/page.tsx": {
+    "mtime": 1780678361.6886916,
+    "hash": "d3a17d06dcd3b38461ab127bb4943584"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/gallery/new/page.tsx": {
+    "mtime": 1780678363.3284278,
+    "hash": "60567e039793bb11f427d0ebfb35bf26"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/gallery/[id]/page.tsx": {
+    "mtime": 1780678368.4491603,
+    "hash": "8c661fd687984ec225f88782307a5805"
+  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/faqs/page.tsx": {
     "mtime": 1778942068.9925637,
     "hash": "a032f49a0c79bddd08765e9456e706e5"
@@ -138,6 +126,10 @@
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/invites/page.tsx": {
     "mtime": 1778942068.9935749,
     "hash": "bf7921c37c6d540a012a70309f8b68c3"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/ai-generate/page.tsx": {
+    "mtime": 1780682062.079936,
+    "hash": "2fcca489464783682044d12aa6a9283a"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/orders/page.tsx": {
     "mtime": 1778942068.9900153,
@@ -167,41 +159,9 @@
     "mtime": 1778942068.993811,
     "hash": "7d1e7ff9057f36f22fcf253ab29f26fa"
   },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/projects/page.tsx": {
-    "mtime": 1780584170.111597,
-    "hash": "46d0af1596a76e805f8d7efebd2d4fcd"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/projects/trash/page.tsx": {
-    "mtime": 1780584151.7476075,
-    "hash": "6852c929ae6a2688ed4a0de457e46318"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/projects/new/page.tsx": {
-    "mtime": 1780584129.138574,
-    "hash": "f93e23a594b5eebd54187e262d563ba3"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/(authed)/projects/[id]/page.tsx": {
-    "mtime": 1780584136.8496659,
-    "hash": "44f86874e890704159320f3fa4d07410"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(account)/layout.tsx": {
-    "mtime": 1778942068.9887218,
-    "hash": "7ed88dc110efcdce86fb3a0bc064edd3"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(account)/account/page.tsx": {
-    "mtime": 1778942068.9888713,
-    "hash": "23e9d40edaa1490cb10b0571a47a405b"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(account)/account/orders/page.tsx": {
-    "mtime": 1778942068.9890165,
-    "hash": "3d8b234b13566c02b59606fe1fe1b6cb"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(account)/account/orders/[code]/page.tsx": {
-    "mtime": 1778942068.9891686,
-    "hash": "44e3cb33e41b8a19abca2923600d301a"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/(account)/account/profile/page.tsx": {
-    "mtime": 1778942068.9893801,
-    "hash": "395df5eb3f90307d7beac6d3f43c5589"
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/app/admin/forgot-password/page.tsx": {
+    "mtime": 1780651669.8057258,
+    "hash": "4c7070f4caf4d6148c1bea12eef23530"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/lib/settings.ts": {
     "mtime": 1778942068.9955518,
@@ -220,12 +180,8 @@
     "hash": "db542af258ce7831be5a5315b5d4bff7"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/lib/auth/admin.ts": {
-    "mtime": 1778942069.0057943,
-    "hash": "5585552660f9a7f93688307e9737d40f"
-  },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/lib/auth/customer.ts": {
-    "mtime": 1778942069.0036476,
-    "hash": "a6016f7242cf39ca9d58bdc97f488a77"
+    "mtime": 1780635668.7657616,
+    "hash": "5156536fc220d53605cf89e9fb110d0b"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/ui/input.tsx": {
     "mtime": 1778942068.996092,
@@ -248,8 +204,8 @@
     "hash": "09ca07a7a4fbaf37c166c3aca7f6a797"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/ui/button.tsx": {
-    "mtime": 1778942068.9961956,
-    "hash": "33f8ef5c351115f8904b2a2f3decef54"
+    "mtime": 1780680426.060465,
+    "hash": "b9e3d779ca9c1dd70ca1ca7e0cdb9e1f"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/ui/sheet.tsx": {
     "mtime": 1778942068.997233,
@@ -332,16 +288,16 @@
     "hash": "3205f3686c10fa46810af9db517d72dd"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/shared/CldImage.tsx": {
-    "mtime": 1780505816.392768,
-    "hash": "6256a3c10e00b5ae5db45474aaa4b742"
+    "mtime": 1780660665.8948026,
+    "hash": "02209a935dde616b7d90b65a650b54e9"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/shared/QueryProvider.tsx": {
     "mtime": 1778942069.0001953,
     "hash": "aebc4813facff2f31e62071fe1f5673f"
   },
-  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/admin/forms/ProjectEditor.tsx": {
-    "mtime": 1780584097.9120512,
-    "hash": "166516ecb168fc6631a732e1568c354b"
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/admin/forms/GalleryEditor.tsx": {
+    "mtime": 1780678337.4156613,
+    "hash": "dbb097fdeef17e19f3be0a37eee5054f"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/admin/forms/ServiceEditor.tsx": {
     "mtime": 1780506065.8939917,
@@ -375,13 +331,21 @@
     "mtime": 1780506474.2499807,
     "hash": "0c898622b10a479f3eb9fb98b66b2d59"
   },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/FaqAccordion.tsx": {
+    "mtime": 1780660745.3730164,
+    "hash": "3a3eafe3a89b0e306593ffd86f576c3e"
+  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/Header.tsx": {
-    "mtime": 1780584986.1196084,
-    "hash": "f8dbef6a6969083d0eaa81a40b6d2e30"
+    "mtime": 1780681975.2864344,
+    "hash": "7d386a735be728dadae0288ad0ba2b7b"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/Footer.tsx": {
     "mtime": 1780586652.270673,
     "hash": "1e225605df4817f9a5b174e0edba8e0c"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/LegalPolicy.tsx": {
+    "mtime": 1780680917.0202725,
+    "hash": "8c004724350bb131dd88de6b5bda2a54"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/BookNowButton.tsx": {
     "mtime": 1780584995.03849,
@@ -392,8 +356,8 @@
     "hash": "9303cfe3d5c1d81ebe9529e5aa38b07c"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/Sections.tsx": {
-    "mtime": 1780585055.9592273,
-    "hash": "e107ac6c393a2ce8bbfeba28de83ea70"
+    "mtime": 1781113314.1502993,
+    "hash": "ae614fd0d9a3e8ee219f703b142655bc"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/src/components/public/Hero.tsx": {
     "mtime": 1778942068.9994295,
@@ -403,13 +367,17 @@
     "mtime": 1778859833.8189654,
     "hash": "d7647004fcd6fc51a724065fc878a559"
   },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/prisma.config.ts": {
+    "mtime": 1780635233.455172,
+    "hash": "3b57d24c01de711d792c4b67c1cd79e9"
+  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/main.ts": {
-    "mtime": 1778863122.4809442,
-    "hash": "f67eb006db35f5e194aa3a4d36133e63"
+    "mtime": 1781112000.963696,
+    "hash": "0ef2316a8eb686097292ba2e364edcd4"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/app.module.ts": {
-    "mtime": 1778863122.4810052,
-    "hash": "5fb691d1307f2fcee5cd15ba90ccc3eb"
+    "mtime": 1781112023.0480306,
+    "hash": "242f317f4924ac633993912e2340ecb1"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/otp/otp.module.ts": {
     "mtime": 1778863122.482697,
@@ -444,8 +412,8 @@
     "hash": "91e4b394be8e4400257a43de5a9b4881"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/auth/auth.service.ts": {
-    "mtime": 1778863122.482169,
-    "hash": "8ff58f44d2be2baa01cc5e39e75246a5"
+    "mtime": 1780651704.991828,
+    "hash": "398aad27b21a413bb1735d9386efc553"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/preview/preview.controller.ts": {
     "mtime": 1778863122.4840863,
@@ -468,8 +436,8 @@
     "hash": "c49c4023ebc0dd65847e4dc8986e20f7"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/users/users.service.ts": {
-    "mtime": 1778863122.482326,
-    "hash": "50d4bc1aedf402675012c0b90ee32460"
+    "mtime": 1780651706.8955417,
+    "hash": "8da8f4837131f6cfb9c33da90200e872"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/users/users.module.ts": {
     "mtime": 1778863122.4824064,
@@ -507,6 +475,10 @@
     "mtime": 1778863122.4832575,
     "hash": "43afa2fb227bf4bd47a95a381cc5a464"
   },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/gallery/gallery.module.ts": {
+    "mtime": 1780678269.7475348,
+    "hash": "aca6f9e1f1c6ee42259293a28406c826"
+  },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/faqs/faqs.module.ts": {
     "mtime": 1778863122.4837413,
     "hash": "4b4cf63834c995d0ba5b321e0c2d5d70"
@@ -538,6 +510,26 @@
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/testimonials/testimonials.module.ts": {
     "mtime": 1778863122.4836245,
     "hash": "b6fbaadf0d2104fe7b24bb5baf39b2cf"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/ai/gemini.service.ts": {
+    "mtime": 1780631540.0383735,
+    "hash": "4181bc1336dd18f5347993265419e507"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/ai/ai.service.ts": {
+    "mtime": 1780680759.1798592,
+    "hash": "0e0adde827f0162e410a3c77c02247fa"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/ai/prompts.ts": {
+    "mtime": 1780650646.9611416,
+    "hash": "e1b98c41d02ed094171d87d922663a01"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/ai/ai.controller.ts": {
+    "mtime": 1780633561.3735027,
+    "hash": "c852f1f4a360e1df7120eb3c1b840a0b"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/ai/ai.module.ts": {
+    "mtime": 1780631047.6638856,
+    "hash": "616d8399d54fb236d24cf9a197f94e5d"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/mail/mail.module.ts": {
     "mtime": 1778863122.4828064,
@@ -574,6 +566,10 @@
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/modules/projects/projects.service.ts": {
     "mtime": 1778863122.4838235,
     "hash": "9b26ade749c8a5d45f18d22971244464"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/common/root-landing.ts": {
+    "mtime": 1781111988.3416967,
+    "hash": "47784105797d2d6efeb13341708c4818"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/common/filters/all-exceptions.filter.ts": {
     "mtime": 1778863122.4812913,
@@ -624,32 +620,40 @@
     "hash": "732a2e4b5421616ed7e8bc1506881f13"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/prisma/prisma.service.ts": {
-    "mtime": 1778863122.4820092,
-    "hash": "e69ac8ea8de27ee90c559d7dc9c6c61f"
+    "mtime": 1780635121.1707473,
+    "hash": "3234eed9f6fae3cad9072843cb949633"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/prisma/prisma.module.ts": {
     "mtime": 1778863122.482048,
     "hash": "3505a1831c78f0a9475e4ce0f0092410"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/config/configuration.ts": {
-    "mtime": 1780588746.3451452,
-    "hash": "65024eff836a5b8749cbb2d4eddc4205"
+    "mtime": 1780631503.756527,
+    "hash": "a8cc647d799a875a9b62534aee84ebc4"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/src/config/env.validation.ts": {
-    "mtime": 1778863122.481937,
-    "hash": "27d78983c8790541e50561447e30db25"
+    "mtime": 1780631497.620131,
+    "hash": "0dba636a557d29f9f09ccfd72f4d4462"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/test/app.e2e-spec.ts": {
     "mtime": 1778859833.81973,
     "hash": "91198fa8fc7e238ecc9dacec901d7a15"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/api/index.ts": {
-    "mtime": 1780588805.4091654,
-    "hash": "76bc5db4300ad80413fd489254b66975"
+    "mtime": 1781112009.9538465,
+    "hash": "4a1c52d49098cda4f66c43774fd8d153"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/scripts/gen-about-image.mjs": {
+    "mtime": 1780649820.0723424,
+    "hash": "47f971c03bb2c37d56a0feaa8f9ffdca"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/scripts/bulk-services.mjs": {
+    "mtime": 1780650654.0010962,
+    "hash": "d6a2db48bcd754abc02cb367b33ba85f"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/prisma/seed.ts": {
-    "mtime": 1778863192.6645365,
-    "hash": "3d4646a8e61f9d64399dd46874d1b7ec"
+    "mtime": 1780635124.203765,
+    "hash": "76eb598c5cad594e1c3598059871c57e"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/prisma/migrations/20260515164144_init/migration.sql": {
     "mtime": 1778863304.641303,
@@ -664,15 +668,19 @@
     "hash": "f15aaa42d5d299d091b1171097ea56ad"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/pnpm-workspace.yaml": {
-    "mtime": 1780506078.0663397,
-    "hash": "9702162ad5e432fff9a62920b09e9853"
+    "mtime": 1780635552.5467198,
+    "hash": "2b9fb11e3eadba961ed32f9aa6d0e6c8"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/README.md": {
     "mtime": 1778859833.8188214,
     "hash": "8e8d8363582979f3debdc321fd7dbe4a"
   },
   "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-backend/pnpm-workspace.yaml": {
-    "mtime": 1780591167.0644867,
-    "hash": "f2384b37fa52ccdbc8f76945fe414757"
+    "mtime": 1780635422.9291358,
+    "hash": "67035531994bece08f4ddc86e885c8dd"
+  },
+  "/home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi/pestcontrolrajshahi-frontend/public/icon.jpg": {
+    "mtime": 1780660582.716164,
+    "hash": "6258b011694872d60cea390931c10c92"
   }
 }
