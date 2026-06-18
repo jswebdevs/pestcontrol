@@ -1,11 +1,11 @@
-# Graph Report - /home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi  (2026-06-10)
+# Graph Report - /home/jamil/Desktop/Projects/NodeJs/kamalvai/pestcontrolrajshahi  (2026-06-18)
 
 ## Corpus Check
-- 53 files · ~54,993 words
+- 4 files · ~49,028 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 849 nodes · 1674 edges · 59 communities (34 shown, 25 thin omitted)
+- 849 nodes · 1674 edges · 60 communities (34 shown, 26 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
@@ -60,10 +60,11 @@
 - [[_COMMUNITY_Community 47|Community 47]]
 - [[_COMMUNITY_Community 48|Community 48]]
 - [[_COMMUNITY_Community 49|Community 49]]
-- [[_COMMUNITY_Community 51|Community 51]]
+- [[_COMMUNITY_Community 50|Community 50]]
 - [[_COMMUNITY_Community 52|Community 52]]
 - [[_COMMUNITY_Community 53|Community 53]]
-- [[_COMMUNITY_Community 55|Community 55]]
+- [[_COMMUNITY_Community 54|Community 54]]
+- [[_COMMUNITY_Community 56|Community 56]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 39 edges
@@ -89,7 +90,7 @@
 - `CommandShortcut()` --calls--> `cn()`  [EXTRACTED]
   pestcontrolrajshahi-frontend/src/components/ui/command.tsx → pestcontrolrajshahi-frontend/src/lib/utils.ts
 
-## Communities (59 total, 25 thin omitted)
+## Communities (60 total, 26 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.07
@@ -108,28 +109,28 @@ Cohesion: 0.06
 Nodes (39): Repeater(), AboutEditor(), AboutSetting, BadgeSetting, BusinessInfo, BusinessInfoEditor(), CtaSetting, FinalCtaEditor() (+31 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.15
-Nodes (16): ForgotDto, LoginDto, RegisterDto, ResetDto, ContactDto, ContactModule, DashboardModule, CurrentUser (+8 more)
+Cohesion: 0.09
+Nodes (10): AdminPreviewController, PublicPreviewController, PreviewModule, PreviewService, PublicProjectsController, ProjectsModule, ALLOWED_MARKS, ALLOWED_NODES (+2 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.1
-Nodes (9): AdminPreviewController, PublicPreviewController, PreviewModule, PreviewService, ALLOWED_MARKS, ALLOWED_NODES, RichContentService, PublicServicesController (+1 more)
+Cohesion: 0.22
+Nodes (12): ForgotDto, LoginDto, RegisterDto, ResetDto, CurrentUser, JwtUser, Public(), FaqsModule (+4 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.11
-Nodes (11): AppConfig, envValidationSchema, FaqsModule, TransformInterceptor, MailModule, MediaModule, PrismaModule, PublicProjectsController (+3 more)
+Nodes (10): AppConfig, envValidationSchema, DashboardModule, TransformInterceptor, MediaModule, CustomerOrdersController, PublicOrdersController, OrdersModule (+2 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.11
-Nodes (10): IssueTokensInput, LoginDto, RegisterDto, MailService, MailTemplate, CustomerOrdersController, PublicOrdersController, OrdersModule (+2 more)
-
-### Community 8 - "Community 8"
 Cohesion: 0.13
 Nodes (22): Backend pnpm-workspace.yaml, Kamil Mysliwiec (NestJS author), MIT License, NestJS framework, NestJS Devtools, NestJS Mau (AWS deploy), Node.js, pnpm (+14 more)
 
-### Community 9 - "Community 9"
+### Community 8 - "Community 8"
 Cohesion: 0.14
 Nodes (14): ServiceCategory, ServiceEditor(), ServiceFormProps, TagInput(), AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription (+6 more)
+
+### Community 9 - "Community 9"
+Cohesion: 0.14
+Nodes (10): IssueTokensInput, LoginDto, RegisterDto, ContactDto, ContactModule, MailModule, MailService, MailTemplate (+2 more)
 
 ### Community 10 - "Community 10"
 Cohesion: 0.18
@@ -161,31 +162,31 @@ Nodes (11): Btn(), TiptapEditor(), TiptapEditorProps, cn(), SheetContentProps, S
 
 ### Community 23 - "Community 23"
 Cohesion: 0.18
+Nodes (7): OtpController, PURPOSES, SendOtpDto, VerifyOtpDto, OtpModule, OtpEntry, Purpose
+
+### Community 24 - "Community 24"
+Cohesion: 0.18
 Nodes (4): AuthModule, GoogleStrategy, JwtAdminStrategy, JwtCustomerStrategy
 
-### Community 25 - "Community 25"
+### Community 26 - "Community 26"
 Cohesion: 0.18
 Nodes (3): AdminSettingsController, PublicSettingsController, SettingsService
 
-### Community 26 - "Community 26"
+### Community 27 - "Community 27"
 Cohesion: 0.17
 Nodes (9): FormControl, FormDescription, FormFieldContext, FormFieldContextValue, FormItem, FormItemContext, FormItemContextValue, FormLabel (+1 more)
 
-### Community 29 - "Community 29"
+### Community 30 - "Community 30"
 Cohesion: 0.24
 Nodes (4): AcceptInviteDto, CreateInviteDto, PublicInvitesController, InvitesModule
 
-### Community 30 - "Community 30"
+### Community 31 - "Community 31"
 Cohesion: 0.2
 Nodes (8): Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut()
 
-### Community 31 - "Community 31"
+### Community 32 - "Community 32"
 Cohesion: 0.2
 Nodes (9): DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut(), DropdownMenuSubContent (+1 more)
-
-### Community 33 - "Community 33"
-Cohesion: 0.22
-Nodes (4): OtpController, OtpModule, OtpEntry, Purpose
 
 ### Community 34 - "Community 34"
 Cohesion: 0.22
@@ -210,16 +211,16 @@ Nodes (3): getAdminSession(), AdminLayout(), NAV
 ## Knowledge Gaps
 - **151 isolated node(s):** `config`, `nextConfig`, `config`, `config`, `schema` (+146 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **25 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **26 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `Community 17` to `Community 0`, `Community 34`, `Community 3`, `Community 38`, `Community 9`, `Community 12`, `Community 16`, `Community 26`, `Community 30`, `Community 31`?**
+- **Why does `cn()` connect `Community 17` to `Community 0`, `Community 32`, `Community 34`, `Community 3`, `Community 38`, `Community 8`, `Community 12`, `Community 16`, `Community 27`, `Community 31`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
-- **Why does `JwtAdminGuard` connect `Community 4` to `Community 29`, `Community 2`, `Community 37`, `Community 5`?**
+- **Why does `JwtAdminGuard` connect `Community 5` to `Community 2`, `Community 37`, `Community 6`, `Community 9`, `Community 30`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
-- **Why does `Public()` connect `Community 4` to `Community 2`, `Community 37`, `Community 5`, `Community 10`, `Community 29`?**
+- **Why does `Public()` connect `Community 5` to `Community 2`, `Community 37`, `Community 9`, `Community 10`, `Community 23`, `Community 30`?**
   _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **What connects `config`, `nextConfig`, `config` to the rest of the system?**
   _151 weakly-connected nodes found - possible documentation gaps or missing edges._
