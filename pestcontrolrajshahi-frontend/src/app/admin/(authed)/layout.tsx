@@ -12,13 +12,14 @@ import {
   Users as UsersIcon,
   Send,
   Settings as SettingsIcon,
-  Sparkles,
+  LayoutGrid,
   User,
   LogOut,
 } from "lucide-react";
 
 const NAV = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/content", label: "Content", icon: LayoutGrid },
   { href: "/admin/orders", label: "Orders", icon: ListOrdered },
   { href: "/admin/services", label: "Services", icon: Briefcase },
   { href: "/admin/gallery", label: "Gallery", icon: Images },
@@ -27,7 +28,6 @@ const NAV = [
   { href: "/admin/media", label: "Media", icon: ImageIcon },
   { href: "/admin/users", label: "Users", icon: UsersIcon },
   { href: "/admin/invites", label: "Invites", icon: Send },
-  { href: "/admin/ai-generate", label: "AI Generate", icon: Sparkles },
   { href: "/admin/settings", label: "Settings", icon: SettingsIcon },
   { href: "/admin/profile", label: "Profile", icon: User },
 ];

@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiGet } from "@/lib/api";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -21,8 +22,23 @@ import {
   SectionHeadingEditor,
 } from "@/components/admin/section-editors/SectionEditors";
 
+const VALID_TABS = new Set([
+  "general",
+  "header",
+  "hero",
+  "home",
+  "footer",
+  "seo",
+  "theme",
+  "legal",
+]);
+
 export default function AdminSettings() {
   const qc = useQueryClient();
+  const params = useSearchParams();
+  // Lets the Content hub deep-link to a specific tab — e.g. /admin/settings?tab=hero
+  const tabParam = params.get("tab");
+  const defaultTab = tabParam && VALID_TABS.has(tabParam) ? tabParam : "general";
   const q = useQuery({ queryKey: ["admin-settings"], queryFn: () => apiGet("/admin/settings") });
   const data = q.data || {};
   const refresh = () => qc.invalidateQueries({ queryKey: ["admin-settings"] });
@@ -32,7 +48,7 @@ export default function AdminSettings() {
   return (
     <div className="space-y-4">
       <h1 className="font-heading text-2xl font-bold">Settings</h1>
-      <Tabs defaultValue="general">
+      <Tabs defaultValue={defaultTab}>
         <TabsList className="flex-wrap h-auto">
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="header">Header</TabsTrigger>
