@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "dev": "nest start --watch",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate"
+    "vercel-build": "prisma generate",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
