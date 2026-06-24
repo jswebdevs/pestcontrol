@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { serverFetch } from "@/lib/api";
+import { getSettings } from "@/lib/settings";
 import { Card, CardContent } from "@/components/ui/card";
 import { CldImage } from "@/components/shared/CldImage";
 
 export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  const p = settings["page.services"] || {};
+  const title = p.title || "Our services";
+  const description =
+    p.sub ||
+    "Browse every service: termite, cockroach & mosquito control, deep cleaning, sanitization and more. Eco-safe chemicals, transparent pricing, trained technicians.";
+  return { title, description, alternates: { canonical: "/services" } };
+}
 
 export default async function ServicesListPage({
   searchParams,
@@ -12,15 +24,19 @@ export default async function ServicesListPage({
   searchParams: Promise<{ cat?: string }>;
 }) {
   const { cat } = await searchParams;
-  const [services, categories] = await Promise.all([
+  const [settings, services, categories] = await Promise.all([
+    getSettings(),
     serverFetch<any[]>(`/services${cat ? `?category=${encodeURIComponent(cat)}` : ""}`),
     serverFetch<any[]>("/service-categories"),
   ]);
+  const page = settings["page.services"] || {};
   return (
     <section className="container py-16 md:py-20">
-      <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3">Our services</h1>
+      <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3">
+        {page.title || "Our services"}
+      </h1>
       <p className="text-muted-foreground mb-8">
-        Safe, effective cleaning & pest control across Rajshahi.
+        {page.sub || "Safe, effective cleaning & pest control across Rajshahi."}
       </p>
 
       <div className="flex flex-wrap gap-2 mb-8">
@@ -50,7 +66,9 @@ export default async function ServicesListPage({
       </div>
 
       {(services || []).length === 0 ? (
-        <p className="text-sm text-muted-foreground">No services in this category yet.</p>
+        <p className="text-sm text-muted-foreground">
+          {page.emptyMessage || "No services in this category yet."}
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {(services || []).map((s: any) => (

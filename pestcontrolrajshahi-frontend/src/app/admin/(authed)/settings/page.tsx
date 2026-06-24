@@ -27,6 +27,7 @@ const VALID_TABS = new Set([
   "header",
   "hero",
   "home",
+  "pages",
   "footer",
   "seo",
   "theme",
@@ -54,6 +55,7 @@ export default function AdminSettings() {
           <TabsTrigger value="header">Header</TabsTrigger>
           <TabsTrigger value="hero">Hero</TabsTrigger>
           <TabsTrigger value="home">Home sections</TabsTrigger>
+          <TabsTrigger value="pages">Pages</TabsTrigger>
           <TabsTrigger value="footer">Footer</TabsTrigger>
           <TabsTrigger value="seo">SEO</TabsTrigger>
           <TabsTrigger value="theme">Theme</TabsTrigger>
@@ -99,6 +101,27 @@ export default function AdminSettings() {
           </SettingShell>
           <SettingShell sKey="home.finalCta" title="Final CTA" value={data["home.finalCta"] || {}} onSaved={refresh}>
             {(d, set) => <FinalCtaEditor value={d} onChange={set} />}
+          </SettingShell>
+        </TabsContent>
+
+        <TabsContent value="pages" className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Headings &amp; intro copy shown at the top of each sub-page. Leave a field blank to use the built-in default.
+          </p>
+          <SettingShell sKey="page.services" title="Services page" description="Heading + subtitle on /services" value={data["page.services"] || {}} onSaved={refresh}>
+            {(d, set) => <SectionHeadingEditor value={d} onChange={set} />}
+          </SettingShell>
+          <SettingShell sKey="page.gallery" title="Gallery page" description="Heading + subtitle on /gallery" value={data["page.gallery"] || {}} onSaved={refresh}>
+            {(d, set) => <SectionHeadingEditor value={d} onChange={set} />}
+          </SettingShell>
+          <SettingShell sKey="page.about" title="About page" description="Heading + subtitle on /about" value={data["page.about"] || {}} onSaved={refresh}>
+            {(d, set) => <SectionHeadingEditor value={d} onChange={set} />}
+          </SettingShell>
+          <SettingShell sKey="page.contact" title="Contact page" description="Heading + subtitle on /contact" value={data["page.contact"] || {}} onSaved={refresh}>
+            {(d, set) => <SectionHeadingEditor value={d} onChange={set} />}
+          </SettingShell>
+          <SettingShell sKey="page.faq" title="FAQ page" description="Heading + subtitle on /faq" value={data["page.faq"] || {}} onSaved={refresh}>
+            {(d, set) => <SectionHeadingEditor value={d} onChange={set} />}
           </SettingShell>
         </TabsContent>
 

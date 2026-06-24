@@ -79,6 +79,7 @@ const settings = {
     nav: [
       { label: 'Home', href: '/' },
       { label: 'Services', href: '/services' },
+      { label: 'Gallery', href: '/gallery' },
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/contact' },
       { label: 'FAQ', href: '/faq' },
@@ -90,7 +91,7 @@ const settings = {
         image: '',
         headline: 'Cleaning & pest control done right',
         sub: 'Licensed technicians. Eco-safe chemicals. Same-day service across Rajshahi.',
-        cta: { label: 'Get a quote', href: '/order' },
+        cta: { label: 'Get a quote', href: '/contact' },
       },
       {
         image: '',
@@ -144,7 +145,7 @@ const settings = {
   'home.finalCta': {
     title: 'Ready for a clean, pest-free space?',
     sub: 'Free inspection. Transparent pricing. Eco-safe service.',
-    cta: { label: 'Book inspection', href: '/order' },
+    cta: { label: 'Book inspection', href: '/contact' },
     background: '',
   },
   'footer.contact': {
@@ -153,15 +154,15 @@ const settings = {
     address: 'Shaheb Bazar, Rajshahi, Bangladesh',
     hours: 'Sat–Thu · 8:00 AM – 9:00 PM',
     socials: [
-      { icon: 'facebook', href: 'https://facebook.com' },
-      { icon: 'instagram', href: 'https://instagram.com' },
+      { icon: 'facebook', href: 'https://facebook.com/pestcontrolrajshahi' },
+      { icon: 'instagram', href: 'https://instagram.com/pestcontrolrajshahi' },
     ],
   },
   'footer.columns': {
     columns: [
-      { title: 'Company', links: [{ label: 'About', href: '/about' }, { label: 'Contact', href: '/contact' }] },
-      { title: 'Services', links: [{ label: 'All services', href: '/services' }, { label: 'Book', href: '/order' }] },
-      { title: 'Legal', links: [{ label: 'Privacy', href: '/privacy' }, { label: 'Terms', href: '/terms' }] },
+      { title: 'Company', links: [{ label: 'About', href: '/about' }, { label: 'Gallery', href: '/gallery' }, { label: 'Contact', href: '/contact' }] },
+      { title: 'Services', links: [{ label: 'All services', href: '/services' }, { label: 'Book', href: '/contact' }] },
+      { title: 'Legal', links: [{ label: 'Privacy', href: '/privacy' }, { label: 'Terms', href: '/terms' }, { label: 'Refund Policy', href: '/refund-policy' }] },
     ],
   },
   'seo.default': {

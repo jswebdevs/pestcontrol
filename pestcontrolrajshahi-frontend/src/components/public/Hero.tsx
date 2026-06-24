@@ -47,7 +47,14 @@ export function Hero({ slides }: { slides: any[] }) {
                 <div className="relative">
                   <div className="aspect-[5/4] rounded-3xl bg-gradient-to-br from-primary/15 via-accent/10 to-primary/5 border overflow-hidden">
                     {slide.image ? (
-                      <CldImage publicId={slide.image} alt={slide.headline} w={1200} className="size-full object-cover" />
+                      <CldImage
+                        publicId={slide.image}
+                        alt={slide.imageAlt || (slide.headline ? `${slide.headline} — pest control & cleaning in Rajshahi` : "Pest control & cleaning service in Rajshahi")}
+                        w={1200}
+                        h={960}
+                        crop="fill"
+                        className="size-full object-cover"
+                      />
                     ) : (
                       <div className="size-full grid place-items-center text-primary/50 font-heading text-2xl">
                         {slide.headline?.split(" ").slice(0, 2).join(" ")}
@@ -63,21 +70,28 @@ export function Hero({ slides }: { slides: any[] }) {
       {slides.length > 1 && (
         <>
           <button
+            type="button"
+            aria-label="Previous slide"
             onClick={() => embla?.scrollPrev()}
             className="hidden md:grid absolute left-4 top-1/2 -translate-y-1/2 size-10 rounded-full bg-background/80 backdrop-blur border place-items-center hover:bg-background"
           >
-            <ChevronLeft className="size-5" />
+            <ChevronLeft className="size-5" aria-hidden="true" />
           </button>
           <button
+            type="button"
+            aria-label="Next slide"
             onClick={() => embla?.scrollNext()}
             className="hidden md:grid absolute right-4 top-1/2 -translate-y-1/2 size-10 rounded-full bg-background/80 backdrop-blur border place-items-center hover:bg-background"
           >
-            <ChevronRight className="size-5" />
+            <ChevronRight className="size-5" aria-hidden="true" />
           </button>
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
             {slides.map((_, i) => (
               <button
                 key={i}
+                type="button"
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === index}
                 onClick={() => embla?.scrollTo(i)}
                 className={`h-1.5 rounded-full transition-all ${i === index ? "w-8 bg-primary" : "w-2 bg-muted"}`}
               />

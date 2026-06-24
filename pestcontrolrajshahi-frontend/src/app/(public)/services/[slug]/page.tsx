@@ -1,19 +1,34 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { serverFetch } from "@/lib/api";
+import { cld } from "@/lib/cloudinary";
 import { CldImage } from "@/components/shared/CldImage";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookNowButton } from "@/components/public/BookNowButton";
+import { ServiceJsonLd, BreadcrumbJsonLd } from "@/components/shared/JsonLd";
 import { CheckCircle2, XCircle } from "lucide-react";
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const s = await serverFetch<any>(`/services/${slug}`);
   if (!s) return {};
+  const canonical = `/services/${s.slug}`;
+  const title = s.seoTitle || s.name;
+  const description = s.seoDescription || s.shortDesc || undefined;
+  const ogImage = s.image ? cld(s.image, { w: 1200, h: 630, crop: "fill" }) : undefined;
   return {
-    title: s.seoTitle || s.name,
-    description: s.seoDescription || s.shortDesc,
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: canonical,
+      ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: s.name }] } : {}),
+    },
   };
 }
 
@@ -35,6 +50,18 @@ export default async function ServicePage({
 
   return (
     <article className="container py-12">
+      {!preview && (
+        <>
+          <ServiceJsonLd service={service} />
+          <BreadcrumbJsonLd
+            items={[
+              { name: "Home", path: "/" },
+              { name: "Services", path: "/services" },
+              { name: service.name, path: `/services/${service.slug}` },
+            ]}
+          />
+        </>
+      )}
       {preview && (
         <div className="rounded-2xl bg-amber-500/10 border border-amber-500/40 text-amber-900 dark:text-amber-200 px-4 py-2 mb-6 text-sm font-medium">
           🔍 PREVIEW — not visible to visitors

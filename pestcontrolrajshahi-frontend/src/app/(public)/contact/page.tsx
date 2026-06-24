@@ -6,18 +6,23 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 export const metadata = {
   title: "Contact",
   description: "Reach us by phone, email, or visit the office. Map and address inside.",
+  alternates: { canonical: "/contact" },
 };
 
 export default async function ContactPage() {
   const settings = await getSettings();
   const contact = settings["footer.contact"] || {};
+  const page = settings["page.contact"] || {};
 
   return (
     <section className="container py-16 md:py-20">
       <div className="max-w-2xl mb-10">
-        <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3">Get in touch</h1>
+        <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3">
+          {page.title || "Get in touch"}
+        </h1>
         <p className="text-muted-foreground">
-          Reach us by phone, email, or stop by the office. To request a service, use the booking button.
+          {page.sub ||
+            "Reach us by phone, email, or stop by the office. To request a service, use the booking button."}
         </p>
       </div>
 
@@ -97,7 +102,9 @@ export default async function ContactPage() {
               />
             ) : (
               <div className="w-full h-full min-h-[360px] grid place-items-center text-sm text-muted-foreground p-8 text-center">
-                Add a Google Maps embed URL in admin → Settings → Footer → Map embed URL.
+                {contact.address
+                  ? `Visit us at ${contact.address}.`
+                  : "Find us in Rajshahi — call or email for directions."}
               </div>
             )}
           </CardContent>

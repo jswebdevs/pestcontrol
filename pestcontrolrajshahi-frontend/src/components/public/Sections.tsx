@@ -30,9 +30,9 @@ export function About({ about }: { about: any }) {
 
   return (
     <section className="py-20 md:py-28">
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-12 items-stretch">
         {/* Left — image fills the column at portrait aspect */}
-        <div className="rounded-3xl overflow-hidden bg-muted/40 aspect-4/5 lg:aspect-auto lg:min-h-130 relative">
+        <div className="rounded-3xl overflow-hidden bg-muted/40 aspect-4/5 lg:aspect-auto lg:min-h-[520px] relative">
           <CldImage
             publicId={about.image}
             alt={about.title || "About"}

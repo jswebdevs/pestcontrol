@@ -68,8 +68,13 @@ export function CldImage({
     <img
       src={cld(publicId, { w, h, crop })}
       alt={alt}
+      // Explicit intrinsic size lets the browser reserve space → no layout
+      // shift (CLS) while the image loads.
+      width={w}
+      height={h}
       className={className}
       loading="lazy"
+      decoding="async"
       {...rest}
     />
   );

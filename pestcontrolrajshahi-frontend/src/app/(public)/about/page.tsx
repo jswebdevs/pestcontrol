@@ -9,8 +9,9 @@ export async function generateMetadata() {
   const settings = await getSettings();
   const a = settings["page.about"] || {};
   return {
-    title: a.heading || "About us",
-    description: a.subheading || "",
+    title: a.heading || a.title || "About us",
+    description: a.subheading || a.sub || "",
+    alternates: { canonical: "/about" },
   };
 }
 
@@ -19,6 +20,10 @@ const FALLBACK_ICONS = [ShieldCheck, Users, BadgeCheck, Sparkles];
 export default async function AboutPage() {
   const settings = await getSettings();
   const a = settings["page.about"] || {};
+  // `heading`/`subheading` are the canonical fields; `title`/`sub` are written
+  // by the shared SectionHeadingEditor in admin → Settings → Pages.
+  const heading = a.heading || a.title;
+  const subheading = a.subheading || a.sub;
   const homeAbout = settings["home.about"] || {};
   const heroImage = homeAbout.image || a.image;
   const paragraphs: string[] = Array.isArray(a.paragraphs) ? a.paragraphs : [];
@@ -30,17 +35,17 @@ export default async function AboutPage() {
     <article>
       {/* Hero */}
       <section className="bg-muted/30 border-b">
-        <div className="container py-16 md:py-24 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-12 items-center">
+        <div className="container py-16 md:py-24 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 md:gap-10 lg:gap-12 items-center">
           <div className="space-y-5">
             <div className="inline-block text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 text-primary">
               About us
             </div>
             <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              {a.heading || "About Pest Control Rajshahi"}
+              {heading || "About Pest Control Rajshahi"}
             </h1>
-            {a.subheading && (
+            {subheading && (
               <p className="text-lg text-muted-foreground max-w-prose leading-relaxed">
-                {a.subheading}
+                {subheading}
               </p>
             )}
             <div className="pt-2">
@@ -52,7 +57,7 @@ export default async function AboutPage() {
           <div className="rounded-3xl overflow-hidden bg-muted aspect-square lg:aspect-4/5 relative">
             <CldImage
               publicId={heroImage}
-              alt={a.heading || "Pest Control Rajshahi team"}
+              alt={heading ? `${heading} — our team in Rajshahi` : "Pest Control Rajshahi cleaning & pest control team"}
               w={1200}
               h={1500}
               className="absolute inset-0 size-full object-cover"

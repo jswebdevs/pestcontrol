@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { serverFetch } from "@/lib/api";
+import { getSettings } from "@/lib/settings";
 import { CldImage } from "@/components/shared/CldImage";
 import { BookNowButton } from "@/components/public/BookNowButton";
 
@@ -9,6 +10,7 @@ export const metadata = {
   title: "Gallery",
   description:
     "Photos from our cleaning and pest control work across Rajshahi — homes, restaurants, schools, hotels, hospitals.",
+  alternates: { canonical: "/gallery" },
 };
 
 export default async function GalleryPage({
@@ -17,16 +19,18 @@ export default async function GalleryPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   const { category } = await searchParams;
-  const [items, catRows] = await Promise.all([
+  const [items, catRows, settings] = await Promise.all([
     serverFetch<any[]>(
       `/gallery${category ? `?category=${encodeURIComponent(category)}` : ""}`,
     ),
     serverFetch<Array<{ category: string | null }>>("/gallery/categories"),
+    getSettings(),
   ]);
   const categories = Array.from(
     new Set((catRows || []).map((c) => c.category).filter(Boolean) as string[]),
   );
   const list = items || [];
+  const page = settings["page.gallery"] || {};
 
   return (
     <section className="container py-16 md:py-20">
@@ -35,11 +39,11 @@ export default async function GalleryPage({
           Gallery
         </div>
         <h1 className="font-heading text-3xl md:text-5xl font-bold mb-3 leading-tight">
-          Our work in pictures
+          {page.title || "Our work in pictures"}
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          A look at the spaces we&apos;ve cleaned and the pests we&apos;ve sent packing. Tap any image
-          for a closer look.
+          {page.sub ||
+            "A look at the spaces we’ve cleaned and the pests we’ve sent packing. Tap any image for a closer look."}
         </p>
       </div>
 
@@ -74,7 +78,8 @@ export default async function GalleryPage({
       {list.length === 0 ? (
         <div className="text-center py-16 max-w-md mx-auto">
           <p className="text-sm text-muted-foreground mb-5">
-            No photos in the gallery yet. Check back soon — we&apos;re adding new work every week.
+            {page.emptyMessage ||
+              "No photos in the gallery yet. Check back soon — we’re adding new work every week."}
           </p>
           <BookNowButton size="lg" className="rounded-full px-7">
             Book a service
@@ -89,14 +94,18 @@ export default async function GalleryPage({
             >
               <CldImage
                 publicId={g.image}
-                alt={g.caption || "Gallery photo"}
+                alt={
+                  g.caption
+                    ? `${g.caption}${g.category ? ` — ${g.category}` : ""} · Pest control & cleaning in Rajshahi`
+                    : `Pest control & cleaning work in Rajshahi${g.category ? ` — ${g.category}` : ""}`
+                }
                 w={600}
                 h={600}
                 crop="fill"
                 className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               {(g.caption || g.category) && (
-                <figcaption className="absolute inset-x-0 bottom-0 p-3 bg-linear-to-t from-black/75 via-black/30 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <figcaption className="absolute inset-x-0 bottom-0 p-3 bg-linear-to-t from-black/75 via-black/30 to-transparent text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                   {g.category && (
                     <div className="text-[10px] font-medium uppercase tracking-wider opacity-90 mb-0.5 capitalize">
                       {g.category}
@@ -114,11 +123,11 @@ export default async function GalleryPage({
 
       <div className="mt-16 rounded-3xl bg-linear-to-br from-primary to-primary/70 text-primary-foreground p-10 md:p-14 text-center">
         <h2 className="font-heading text-2xl md:text-4xl font-bold mb-3">
-          See your space here next
+          {page.ctaTitle || "See your space here next"}
         </h2>
         <p className="opacity-90 max-w-xl mx-auto mb-6">
-          Book a free inspection — we&apos;ll send a technician and add your before/after to the
-          gallery (with permission).
+          {page.ctaSub ||
+            "Book a free inspection — we’ll send a technician and add your before/after to the gallery (with permission)."}
         </p>
         <BookNowButton size="lg" variant="secondary" className="rounded-full px-8 font-semibold">
           Book a service

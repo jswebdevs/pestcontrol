@@ -12,7 +12,8 @@ export default function ErrorBoundary({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error);
+    // Dev-only: keep the production console clean (Lighthouse best-practices).
+    if (process.env.NODE_ENV === "development") console.error(error);
   }, [error]);
 
   return (

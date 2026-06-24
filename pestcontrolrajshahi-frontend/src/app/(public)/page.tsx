@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getSettings } from "@/lib/settings";
 import { serverFetch } from "@/lib/api";
 import { Hero } from "@/components/public/Hero";
@@ -10,6 +11,23 @@ import {
   Testimonials,
   FinalCTA,
 } from "@/components/public/Sections";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  const seo = settings["seo.home"] || settings["seo.default"] || {};
+  const title =
+    seo.title || "Pest Control & Cleaning Services in Rajshahi";
+  const description =
+    seo.description ||
+    "Licensed pest control and deep cleaning across Rajshahi — termite, cockroach, mosquito treatment & sanitization. Eco-safe chemicals, same-day service, free inspection.";
+  return {
+    // Home owns the brand title verbatim (no "· Site" suffix template here).
+    title: { absolute: title },
+    description,
+    alternates: { canonical: "/" },
+    // openGraph/twitter inherit the rich defaults from the root layout (incl. og:image).
+  };
+}
 
 export default async function HomePage() {
   const [settings, services, testimonials] = await Promise.all([
