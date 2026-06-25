@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   const seo = settings["seo.default"] ?? {};
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Pest Control Rajshahi";
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pestcontrolrajshahi.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.pestcontrolrajshahi.com";
   const title = seo.title || siteName;
   const description =
     seo.description ||

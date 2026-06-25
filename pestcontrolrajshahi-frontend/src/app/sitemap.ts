@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { serverFetch } from "@/lib/api";
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://pestcontrolrajshahi.com").replace(/\/$/, "");
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.pestcontrolrajshahi.com").replace(/\/$/, "");
 
 /**
  * Dynamic sitemap. Static marketing pages + every published service detail

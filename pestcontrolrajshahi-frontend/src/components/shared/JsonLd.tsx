@@ -7,7 +7,7 @@ import { cld } from "@/lib/cloudinary";
  * Google-recommended way to embed structured data.
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pestcontrolrajshahi.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.pestcontrolrajshahi.com";
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "Pest Control Rajshahi";
 
 function JsonLdScript({ data }: { data: Record<string, any> }) {
